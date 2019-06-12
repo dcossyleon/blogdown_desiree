@@ -54,6 +54,6 @@ h3 {
   padding-left: 70px !important;
 }
 
-#profile {
-  
+.parallax {
+  background-attachment: fixed;
 }

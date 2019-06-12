@@ -15,7 +15,7 @@ font = "desiree"
 description = "Desirée De Leon's personal website/ portfolio/ blog"
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
-sharing_image = "firstclass.jpg"
+sharing_image = "hello.jpg"
 
 # Twitter username (without @). Used when a vistor shares your site on Twitter.
 twitter = "dcossyle"

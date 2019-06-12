@@ -7,7 +7,7 @@ google_fonts = "Abril+Fatface|Cutive+Mono|Josefin+Slab:300,400,600,700|Open+Sans
 # Font families
 heading_font = "Josefin Slab"
 body_font = "Open Sans"
-nav_font = "Josefin Slab"
+nav_font = "Open Sans"
 mono_font = "Cutive Mono"
 
 # Font size

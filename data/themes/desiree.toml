@@ -18,12 +18,12 @@ link_hover = "#111111"
 #link_hover = "#343c56"
 
 # Menu
-menu_primary = "#575757"
-menu_text = "#fff"
-menu_text_active = "#84d6d3"
+menu_primary = "fcfcfc"
+menu_text = "#999"
+menu_text_active = "#111111"
 menu_title = "#fff"
 
 # Backgrounds
-background = "#575757"
+background = "#ffcfcfc"
 home_section_odd = "#FFFFFF"
 home_section_even = "#FFFFFF"

@@ -9,17 +9,17 @@
   weight = 10
 
 [[main]]
-  name = "Posts"
+  name = "Blog"
   url = "post/"
   weight = 20
 
 [[main]]
   name = "Projects"
-  url = "project/"
+  url = "project_landing/"
   weight = 30
 
 [[main]]
-  name = "Gallery"
+  name = "Art"
   url = "gallery/"
   weight = 50
   

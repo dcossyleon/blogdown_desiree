@@ -6,6 +6,29 @@ categories: ["R"]
 tags: ["R Markdown", "plot", "regression"]
 ---
 
+link to jpuyter post:
+
+[here is my jupyter post](../jupyter)
+
+
+___
+
+link to my books:
+
+[book list page](../../book) go up another level. 
+
+---
+
+link to other things on the home page:
+link to the gallery:
+
+[fasion hightlights](../) go up to posts, go up tot he base url, then #gallery
+
+___
+
+link to a file in your static directory. go up to base url, and then static is an assumed subdirectory already. Sort of on the same level as content. Confusing. 
+
+[text](../../img/hero-academic.png) #everything in static gets pushed up to the base url. 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse = TRUE)
 ```

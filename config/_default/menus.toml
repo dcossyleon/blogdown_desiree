@@ -4,33 +4,33 @@
 #   The weight parameter defines the order that the links will appear in.
 
 [[main]]
-  name = "Home"
+  name = "About"
   url = "#about"
   weight = 10
 
 [[main]]
   name = "Posts"
-  url = "#posts"
+  url = "post/"
   weight = 20
 
 [[main]]
   name = "Projects"
-  url = "#projects"
+  url = "project/"
   weight = 30
 
 [[main]]
-  name = "Publications"
-  url = "#featured"
-  weight = 40
-
-[[main]]
-  name = "Courses"
-  url = "courses/"
+  name = "Gallery"
+  url = "gallery/"
   weight = 50
+  
+[[main]]
+  name = "Prints"
+  url = "https://100daysoftinythings.bigcartel.com/"
+  weight = 55
 
 [[main]]
   name = "Contact"
-  url = "#contact"
+  url = "contact/"
   weight = 60
 
 # Link to a PDF of your resume/CV from the menu.

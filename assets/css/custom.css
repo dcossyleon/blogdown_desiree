@@ -1,7 +1,7 @@
 /* Whole document: */
 
 body {
-  margin-top: 160px !important;
+  margin-top: 140px !important;
 }
 .navbar {
   min-height: 140px !important;
@@ -10,12 +10,12 @@ body {
 #navbar-main {
     box-shadow: none;
     text-transform: lowercase;
-    background: rgba(255,255,255,0.3);
+    background: #fcfcfcF2;
+    /*rgba(255,255,255,0.95)*/;
 }
 
 h1 {
   text-transform: uppercase;
-  
 }
 
 h2 {
@@ -29,6 +29,11 @@ h3 {
 
 
 /* About Section */
+
+.home-section.wg-about {
+  padding-top: 0;
+  margin-top: -30px;
+}
 
 
 #about h1 {
@@ -56,4 +61,5 @@ h3 {
 
 .parallax {
   background-attachment: fixed;
+  width: 100%;
 }

@@ -10,6 +10,7 @@ body {
 #navbar-main {
     box-shadow: none;
     text-transform: lowercase;
+    background: rgba(255,255,255,0.3);
 }
 
 h1 {

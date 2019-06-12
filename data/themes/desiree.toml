@@ -13,13 +13,9 @@ primary_dark = "#ee5863"
 link = "#999999"
 link_hover = "#111111"
 
-# Links
-#link = "#ee5863"
-#link_hover = "#343c56"
-
 # Menu
 menu_primary = "fcfcfc"
-menu_text = "#999"
+menu_text = "#999999"
 menu_text_active = "#111111"
 menu_title = "#fff"
 

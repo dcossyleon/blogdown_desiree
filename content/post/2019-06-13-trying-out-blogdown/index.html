@@ -1,0 +1,78 @@
+---
+title: Trying Out Blogdown
+author: Desirée De Leon
+date: '2019-06-13'
+slug: trying-out-blogdown
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-13T10:36:58-04:00'
+featured: no
+image:
+  caption: 'Photo by Valentin Lacoste on [**Unsplash**](https://unsplash.com/photos/JFNinh22Ehk)'
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<div id="hello" class="section level1">
+<h1>Hello!</h1>
+<p>Hi! This is my very first blog post using an R Markdown file within blogdown. I’m going to demonstrate how we can include the following in a single post:</p>
+<ol style="list-style-type: decimal">
+<li>R code</li>
+<li>A plot</li>
+<li>An image (via markdown syntax)</li>
+<li>An image (via <code>knitr::include_graphics</code>)</li>
+<li>A relative link to another section in my site</li>
+<li>A demo using a dataset that I have read in</li>
+</ol>
+</div>
+<div id="iris-data-set" class="section level1">
+<h1>1) Iris data set</h1>
+<p>Let’s make a plot using the <code>iris</code> data set in <code>ggplot2</code>.</p>
+<pre class="r"><code>library(ggplot2)</code></pre>
+<pre><code>## Registered S3 methods overwritten by &#39;ggplot2&#39;:
+##   method         from 
+##   [.quosures     rlang
+##   c.quosures     rlang
+##   print.quosures rlang</code></pre>
+<pre class="r"><code># Dataset
+head(iris)</code></pre>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="plotting" class="section level1">
+<h1>2) Plotting</h1>
+<pre class="r"><code>scatter &lt;- ggplot(data=iris, aes(x= Sepal.Length, y = Sepal.Width))
+scatter + geom_point(aes(color=Species, shape=Species)) +
+  xlab(&quot;Sepal Length&quot;) + ylab(&quot;Sepal Width&quot;)</code></pre>
+<p><img src="/post/2019-06-13-trying-out-blogdown/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="embedding-a-bundled-image" class="section level1">
+<h1>3) Embedding a bundled image</h1>
+<p>Using markdown syntax <code>![Photo by Valentin Lacoste on Unsplash](valentin-lacoste-1675701-unsplash.jpg</code> to generate the image below:</p>
+<p>I’m still wondering how to get the caption to show up when I embed images in this way.</p>
+<center>
+<img src="valentin-lacoste-1675701-unsplash.jpg" alt="Photo by Valentin Lacoste on Unsplash" width="500" />
+</center>
+</div>
+<div id="using-knitr" class="section level1">
+<h1>4) Using knitr</h1>
+<p>We can also accomplish this with a code chunk, setting the following parameter <code>out.width=&quot;500px&quot;, fig.align='center'</code></p>
+<pre class="r"><code>knitr::include_graphics(&quot;valentin-lacoste-1675701-unsplash.jpg&quot;)</code></pre>
+<p><img src="valentin-lacoste-1675701-unsplash.jpg" width="500px" style="display: block; margin: auto;" /></p>
+</div>
+<div id="relative-links" class="section level1">
+<h1>5) Relative links</h1>
+<p>I can also include some relative links to, for example, tell you check out this <a href="../../project_landing/">other section of my site</a>!</p>
+</div>

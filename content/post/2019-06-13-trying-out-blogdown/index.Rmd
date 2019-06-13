@@ -1,0 +1,70 @@
+---
+title: Trying Out Blogdown
+author: Desirée De Leon
+date: '2019-06-13'
+slug: trying-out-blogdown
+categories:
+  - R
+tags: []
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-06-13T10:36:58-04:00'
+featured: no
+image:
+  caption: 'Photo by Valentin Lacoste on [**Unsplash**](https://unsplash.com/photos/JFNinh22Ehk)'
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# Hello!
+Hi! This is my very first blog post using an R Markdown file within blogdown. I'm going to demonstrate how we can include the following in a single post:
+
+1) R code
+2) A plot
+3) An image (via markdown syntax)
+4) An image (via `knitr::include_graphics`)
+5) A relative link to another section in my site
+6) A demo using a dataset that I have read in
+
+
+# 1) Iris data set
+Let's make a plot using the `iris` data set in `ggplot2`.
+```{r}
+library(ggplot2)
+
+# Dataset
+head(iris)
+
+```
+
+# 2) Plotting
+```{r}
+
+scatter <- ggplot(data=iris, aes(x= Sepal.Length, y = Sepal.Width))
+scatter + geom_point(aes(color=Species, shape=Species)) +
+  xlab("Sepal Length") + ylab("Sepal Width")
+
+```
+
+# 3) Embedding a bundled image
+
+Using markdown syntax `![Photo by Valentin Lacoste on Unsplash](valentin-lacoste-1675701-unsplash.jpg` to generate the image below:
+
+I'm still wondering how to get the caption to show up when I embed images in this way.
+
+<center> ![Photo by Valentin Lacoste on Unsplash](valentin-lacoste-1675701-unsplash.jpg){width=500px} </center>
+
+# 4) Using knitr
+
+We can also accomplish this with a code chunk, setting the following parameter `out.width="500px", fig.align='center'`
+```{r, out.width="500px", fig.align='center'}
+
+knitr::include_graphics("valentin-lacoste-1675701-unsplash.jpg")
+```
+
+
+# 5) Relative links 
+
+I can also include some relative links to, for example, tell you check out this [other section of my site](../../project_landing/)!

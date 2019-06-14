@@ -14,7 +14,7 @@ options(
   blogdown.title_case = TRUE
 )
 
-rprofile <- Sys.getenv("R_PROFILE_USER", "~/.Rprofile") # This line and below added in from Blogdown Day 3 slides.
+rprofile <- Sys.getenv("R_PROFILE_USER", "~/.Rprofile") # This line and below added in from Blogdown Day 3 slides for bundling 
 
 if (file.exists(rprofile)) {
   source(file = rprofile)

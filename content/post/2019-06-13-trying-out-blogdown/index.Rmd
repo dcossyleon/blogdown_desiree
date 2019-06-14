@@ -108,4 +108,4 @@ datatable(behavior)
 
 <br>
 
-Hmm...blogdown leaves me with yet another mystery. The datatable renders just fine locally within the chunk display in this .Rmd file, but not when the site renders. How can this be?
+Hmm...blogdown leaves me with yet another mystery. The datatable renders just fine within the RStudio IDE, but not when the site renders. How can this be?

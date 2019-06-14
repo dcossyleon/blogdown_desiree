@@ -22,9 +22,9 @@ organizations:
   url: ""
 role: NSF-GRFP Fellow
 social:
-- icon: envelope
-  icon_pack: fas
-  link: 'mailto:dcossyl@emory.edu'
+- icon: orcid
+  icon_pack: ai
+  link: https://orcid.org/0000-0003-2217-9067?lang=en
 - icon: twitter
   icon_pack: fab
   link: https://twitter.com/dcossyle

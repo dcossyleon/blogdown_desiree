@@ -6,7 +6,7 @@ slug: trying-out-blogdown
 categories:
   - R
 tags: []
-subtitle: ''
+subtitle: 'Getting in some practice including various elements in a blogdown post'
 summary: ''
 authors: []
 lastmod: '2019-06-13T10:36:58-04:00'

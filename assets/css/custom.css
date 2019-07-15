@@ -7,22 +7,15 @@ body {
   min-height: 140px !important;
 }
 
-#navbar-main {
+#navbar-main.navbar-light.fixed-top {
     box-shadow: none;
     text-transform: lowercase;
-    background: #fcfcfc;
-    /*rgba(255,255,255,0.95)*/;
+    background-image: linear-gradient(to bottom, rgba(252, 252, 252, 1), rgba(252,252,252,0)) !important;  
+    background: transparent !important;
 }
 
-h1 {
-  text-transform: uppercase;
-}
 
-h2 {
-  text-transform: uppercase;
-}
-
-h3 {
+h1, h2, h3 {
   text-transform: uppercase;
 }
 

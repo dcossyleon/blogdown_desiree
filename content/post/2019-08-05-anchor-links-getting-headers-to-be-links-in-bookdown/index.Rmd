@@ -1,5 +1,5 @@
 ---
-title: 'Anchor Links: Getting Headers to be Links in Bookdown'
+title: 'Anchor Links'
 author: Desirée De Leon
 date: '2019-08-05'
 slug: bookdown-anchor-links
@@ -7,7 +7,7 @@ categories:
   - bookdown
 tags:
   - R bookdown
-subtitle: ''
+subtitle: 'Getting Headers to be Links in Bookdown'
 summary: ''
 authors: []
 lastmod: '2019-08-05T16:52:58-04:00'
@@ -19,39 +19,43 @@ image:
 projects: []
 ---
 
-Anchor links: Getting headers to be links in bookdown
 
 
 Many markdown files within R have built-in ways to get a link to a specific section headings. These are called anchor links. For example, what you see here:
 
 
-![example_anchor_link](example.png){width=50%}
+![](example.png){width=50%}
 
 
 Having these in a site is useful whenever you want to share a specific section with someone--and you want to send them a link that will take them to precisely the section you intend.
 
 
-But in bookdown, there's no built-in way to create anchor links with an icon for each section header. The closest you can get is to right-click on the header within the table of contents (TOC) and copy its URL address. But sometimes the subsection you want to link to doesn't appear in the TOC, and you're out of luck.
+But in bookdown, there's no built-in way to create anchor links with an icon for each section header. The closest you can get is to right-click on the header within the table of contents (TOC) and copy its URL address. But sometimes the subsection you want to link to doesn't appear in the TOC, and you're out of luck.  
 
-If you want to make linking to sections a little easier for yourself and for your bookdown site users, then follow the steps below to create your own anchor links to bookdown section headers.
+If you want to make linking to sections a little easier for yourself and for your bookdown site users, then follow the steps below to create your own anchor links to bookdown section headers.  
 
-Doing this will require:
+\
 
-(1) A wee bit of javascript in a .js file ("but I know *nothing* about javascript!" you say?--don't worry, you don't need to. Copy/paste is all you need).
+**Doing this will require:**
 
-(2) An HTML file if you don't already have one for your book.
+(1) **A wee bit of javascript in a .js file** (--"but I know *nothing* about javascript!" you say?--don't worry, you don't need to. Copy/paste is all you need).
 
-(3) CSS
+(2) **An HTML file** if you don't already have one for your book.
 
-(4) Editing output.yml
+(3) **CSS**
 
+(4) **Editing `output.yml`**  
+
+\
 
 Adding all this in is a little bit like wrapping a present in a box, in a box, in another box... The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the output.yml file. And bookdown then uses the output.yml file to implement the javascript code and link to the CSS that styles the anchors. 
 
-![schematic](many_boxes.jpg)
-___
+![](many_boxes.jpg)
+\
 
-Let's get started!  
+## Let's get started!  
+
+\
 
 You can add anchor links to any book that you've already started. 
 
@@ -61,14 +65,19 @@ I'm going to demo this starting from a skeletal book, using only the files that 
 
 After running this command,I [commit](https://github.com/dcossyleon/anchor_book/commit/86ebbf94442ad2127a0c447823bfd6150be80291) to GitHub. 
 
-# Add javascript to make anchor links for all section headers
+\
+\
+
+## Add javascript to make anchor links for all section headers
+
+\
 
 We'll make a javascript file. This file is going to have the actual javascript that essentially says "find every section header and tack on a link to itself right before the header". The other important thing the javascript file will do is to add a CSS class "hasAnchor" to each of the headers. This is part of what will allow to style our anchor links with CSS in a couple steps.
 
 1) In RStudio go to *File* > *New File* > *Text File
 2) Paste the javascript below into this file.
 
-```
+    ```{r, eval = FALSE}
 $(document).ready(function() {
 
   // Section anchors
@@ -78,12 +87,18 @@ $(document).ready(function() {
   });
 });
 
-```
-3) Save this file as `book.js`. (You can give it another name, but the convention is usually to name the Javascript file after the project you're using it for.) Save this file in your working directory. Phew--you're done with the javascript code now!
+    ```
+    
+3) Save this file as `book.js`. (You can give it another name, but the convention is usually to name the Javascript file after the project you're using it for.) Save this file in your working directory. Phew--you're done with the javascript code now!  
 
 [Commit](https://github.com/dcossyleon/anchor_book/commit/b53c7f06660338754fc6dc10180710d935fcecd2) this new file to GitHub. 
 
-# Embed `book.js` into HTML file
+\
+\
+
+## Embed `book.js` into HTML file
+
+\
 
 We'll make an HTML file that will refer to our javascript file.
 
@@ -91,13 +106,20 @@ We'll make an HTML file that will refer to our javascript file.
 
 2) Paste the line below into this file. Modify the path in quotes to point to your javascript file, if yours is not in your working directory. (Note: This little line of code will be automatically injected within our bookdown's existing <html> and <head> tags, when we later use `includes: in_header:` so there's no need to include these tags in this HTML file, but nothing bad will happen if you do). 
 
+    ```{r, eval = FALSE}
 <script src="book.js"></script>
+    ```
 
 3) Save this file as `header.html` in your project directory. You can choose a different name if you'd like. 
 
 [Commit](https://github.com/dcossyleon/anchor_book/commit/5fcb3fcc5b355110b656f2dd0a30b7c8f142ae1b) your HTML file to GitHub. 
 
-# Add CSS to show anchor links
+\
+\
+
+## Add CSS to show anchor links
+
+\
 
 In our javascript code, we had the class "hasAnchor" be programatically added to our sections headers. So, we can now style them so that each time we hover over the section header, the anchor link icon will become visible. 
 
@@ -107,7 +129,7 @@ In our javascript code, we had the class "hasAnchor" be programatically added to
 
 3) Save and close. 
 
-```
+    ```{r, eval = FALSE}
 /* -----------Section anchors -------------*/
 
 .book .book-body .page-wrapper .page-inner section.normal {
@@ -138,7 +160,7 @@ a.anchor {
   }
 }
 
-```
+    ```
 
 If you want a few more details about what's going on here, here's a crude summary:
 
@@ -152,29 +174,45 @@ If you want a few more details about what's going on here, here's a crude summar
 
 Here's my [commit](https://github.com/dcossyleon/anchor_book/commit/29900eeec766970e83282dda4e9e77e259aa9ce3) after modifying my CSS file. 
 
+\
+\
 
-# Add anchor link elements to `output.yml`
+## Add anchor link elements to `output.yml`
+
+\
 
 We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our `output.yml`.
 
 1. Open `output.yml`, located in your project directory
 2. Reference your HTML file with the `includes: in_header:` option underneath bookdown::gitbook. Make sure CSS file is also referenced. This part of your output.yml should look something like this:
 
-```
+    ```{r, eval = FALSE}
 bookdown::gitbook:
   includes:
     in_header: header.html
   css: style.css
 
-```
+    ```
 
 3. Save and Close.
 
 My [commit here](https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50a7410add7f653228927d38cdf0).
 
-# Preview your book 
+\
+\
+
+## Preview your book 
+
+\
 
 And enjoy your handywork! 
 
 View all my commits for this post [here](https://github.com/dcossyleon/anchor_book/commits/master).
 
+
+
+Have fun sharing links of your bookdown sections!!
+
+
+\
+\

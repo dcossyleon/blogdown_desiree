@@ -213,8 +213,11 @@ My [commit here](https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50
 
 And enjoy your handywork! 
 
-View all my commits for this post [here](https://github.com/dcossyleon/anchor_book/commits/master).
+View all my commits for this post [here](https://github.com/dcossyleon/anchor_book/commits/master).  
 
+
+\
+\
 
 ## Final comments
 

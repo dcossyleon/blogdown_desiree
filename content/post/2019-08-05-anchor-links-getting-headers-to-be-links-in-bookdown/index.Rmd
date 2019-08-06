@@ -204,7 +204,8 @@ We created all the anchor link infrastructure, now we just need to tell bookdown
           includes = includes2(in_header = "header.html"),
           css = "style.css")
         ) %>% 
-      asis_yaml_output()
+      yml_pluck("output") %>% 
+      asis_yaml_output(fences = FALSE) 
     ```
 
 1. Save and Close.

@@ -155,13 +155,10 @@ visibility: hidden;
 <ol style="list-style-type: decimal">
 <li>Open <code>output.yml</code>, located in your project directory</li>
 <li><p>Reference your HTML file with the <code>includes: in_header:</code> option underneath <code>bookdown::gitbook</code>. Make sure CSS file is also referenced. This part of your <code>output.yml</code> should look something like this:</p>
-<pre class="yaml"><code>---
-output:
-  bookdown::gitbook:
-    includes:
-      in_header: header.html
-    css: style.css
----</code></pre></li>
+<pre class="yaml"><code>bookdown::gitbook:
+  includes:
+    in_header: header.html
+  css: style.css</code></pre></li>
 <li><p>Save and Close.</p></li>
 </ol>
 <p>My <a href="https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50a7410add7f653228927d38cdf0">commit here</a>.</p>

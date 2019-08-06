@@ -51,11 +51,11 @@ If you want to make linking to sections a little easier for yourself and for you
 
 1. **CSS**
 
-1. **Editing `output.yml`**  
+1. **Editing `_output.yml`**  
 
 \
 
-Adding all this in is a little bit like wrapping a present in a box, in a box, in another box... The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the output.yml file. And bookdown then uses the output.yml file to implement the javascript code and link to the CSS that styles the anchors. 
+Adding all this in is a little bit like wrapping a present in a box, in a box, in another box... The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the `_output.yml` file. And bookdown then uses the `_output.yml` file to implement the javascript code and link to the CSS that styles the anchors. 
 
 ![](many_boxes.jpg)
 \
@@ -189,14 +189,14 @@ Here's my [commit](https://github.com/dcossyleon/anchor_book/commit/29900eeec766
 \
 \
 
-## 4) Add anchor link elements to `output.yml`
+## 4) Add anchor link elements to `_output.yml`
 
 \
 
-We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our `output.yml`.
+We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our `_output.yml`.
 
-1. Open `output.yml`, located in your project directory
-1. Reference your HTML file with the `includes: in_header:` option underneath `bookdown::gitbook`. Make sure CSS file is also referenced. This part of your `output.yml` should look something like this:
+1. Open `_output.yml`, located in your project directory
+1. Reference your HTML file with the `includes: in_header:` option underneath `bookdown::gitbook`. Make sure CSS file is also referenced. This part of your `_output.yml` should look something like this:
 
     ```{r echo = FALSE}
     yml(author = FALSE, date = FALSE) %>% 

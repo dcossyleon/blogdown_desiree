@@ -35,11 +35,11 @@ projects: []
 <li><p><strong>A wee bit of javascript in a .js file</strong> (–“but I know <em>nothing</em> about javascript!” you say?–don’t worry, you don’t need to. Copy/paste is all you need).</p></li>
 <li><p><strong>An HTML file</strong> if you don’t already have one for your book.</p></li>
 <li><p><strong>CSS</strong></p></li>
-<li><p><strong>Editing <code>output.yml</code></strong></p></li>
+<li><p><strong>Editing <code>_output.yml</code></strong></p></li>
 </ol>
 <p><br />
 </p>
-<p>Adding all this in is a little bit like wrapping a present in a box, in a box, in another box… The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the output.yml file. And bookdown then uses the output.yml file to implement the javascript code and link to the CSS that styles the anchors.</p>
+<p>Adding all this in is a little bit like wrapping a present in a box, in a box, in another box… The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the <code>_output.yml</code> file. And bookdown then uses the <code>_output.yml</code> file to implement the javascript code and link to the CSS that styles the anchors.</p>
 <p><img src="many_boxes.jpg" /><br />
 </p>
 <div id="lets-get-started" class="section level2">
@@ -147,14 +147,14 @@ visibility: hidden;
 <br />
 </p>
 </div>
-<div id="add-anchor-link-elements-to-output.yml" class="section level2">
-<h2>4) Add anchor link elements to <code>output.yml</code></h2>
+<div id="add-anchor-link-elements-to-_output.yml" class="section level2">
+<h2>4) Add anchor link elements to <code>_output.yml</code></h2>
 <p><br />
 </p>
-<p>We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our <code>output.yml</code>.</p>
+<p>We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our <code>_output.yml</code>.</p>
 <ol style="list-style-type: decimal">
-<li>Open <code>output.yml</code>, located in your project directory</li>
-<li><p>Reference your HTML file with the <code>includes: in_header:</code> option underneath <code>bookdown::gitbook</code>. Make sure CSS file is also referenced. This part of your <code>output.yml</code> should look something like this:</p>
+<li>Open <code>_output.yml</code>, located in your project directory</li>
+<li><p>Reference your HTML file with the <code>includes: in_header:</code> option underneath <code>bookdown::gitbook</code>. Make sure CSS file is also referenced. This part of your <code>_output.yml</code> should look something like this:</p>
 <pre class="yaml"><code>bookdown::gitbook:
   includes:
     in_header: header.html

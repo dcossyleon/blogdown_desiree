@@ -60,16 +60,17 @@ projects: []
 </p>
 <p>We’ll make a new file with a few lines of javascript that essentially say “find every section header, and tack on a link to itself right before that header”. The other important thing the javascript file will do is to add a CSS class “hasAnchor” to each of the headers. This is part of what will allow to style our anchor links with CSS in a couple steps.</p>
 <ol style="list-style-type: decimal">
-<li>In RStudio go to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em></li>
+<li><p>In RStudio go to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em></p></li>
 <li><p>Paste the javascript below into this file.</p>
-<pre class="r"><code>$(document).ready(function() {
+<pre class="js"><code>$(document).ready(function() {
 
   // Section anchors
   $(&#39;.section h1, .section h2, .section h3, .section h4, .section h5&#39;).each(function() {
 anchor = &#39;#&#39; + $(this).parent().attr(&#39;id&#39;);
 $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + anchor + &#39;&quot; class=&quot;anchor&quot;&gt;&lt;/a&gt;&#39;);
   });
-});</code></pre></li>
+});
+</code></pre></li>
 <li><p>Save this file as <code>book.js</code>. (You can give it another name, but the convention is usually to name the Javascript file after the project you’re using it for.) Save this file in your working directory.</p></li>
 </ol>
 <p>Phew–you’re done with the javascript code now!</p>
@@ -86,7 +87,7 @@ $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + an
 <ol style="list-style-type: decimal">
 <li><p><em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em></p></li>
 <li><p>Paste the line below into this file. Modify the path in quotes to point to your javascript file if yours is not in your working directory. (<em>Note</em>: This little line of code will be automatically injected within our bookdown’s existing <code>&lt;html&gt;</code> and <code>&lt;head&gt;</code> tags, when we later use <code>includes: in_header:</code>, so there’s no need to include these tags in this HTML file, but nothing bad will happen if you do).</p>
-<pre class="r"><code>&lt;script src=&quot;book.js&quot;&gt;&lt;/script&gt;</code></pre></li>
+<pre class="html"><code>&lt;script src=&quot;book.js&quot;&gt;&lt;/script&gt;</code></pre></li>
 <li><p>Save this file as <code>header.html</code> in your project directory. You can choose a different name if you’d like.</p></li>
 </ol>
 <p><a href="https://github.com/dcossyleon/anchor_book/commit/5fcb3fcc5b355110b656f2dd0a30b7c8f142ae1b">Commit</a> your HTML file to GitHub.</p>
@@ -103,7 +104,7 @@ $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + an
 <li><p>You may already have a CSS file in your project directory (e.g. <code>style.css</code>), in which case, go to step 2. But if you don’t, create a CSS file with <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em>. Save it as <code>style.css</code> in your project directory. Once again, a different name is okay.</p></li>
 <li><p>Open your <code>style.css</code> file. Paste the CSS styles below to this file.</p></li>
 <li><p>Save and close.</p>
-<pre class="r"><code>/* -----------Section anchors -------------*/
+<pre class="css"><code>/* -----------Section anchors -------------*/
 
 .book .book-body .page-wrapper .page-inner section.normal {
   overflow: visible !important; /*so anchor link doesnt get cut off */
@@ -131,7 +132,8 @@ a.anchor {
   .hasAnchor:hover a.anchor {
 visibility: hidden;
   }
-}</code></pre></li>
+}
+</code></pre></li>
 </ol>
 <p>If you want a few more details about what’s going on here, here’s a crude summary:</p>
 <ul>
@@ -153,11 +155,13 @@ visibility: hidden;
 <ol style="list-style-type: decimal">
 <li>Open <code>output.yml</code>, located in your project directory</li>
 <li><p>Reference your HTML file with the <code>includes: in_header:</code> option underneath <code>bookdown::gitbook</code>. Make sure CSS file is also referenced. This part of your <code>output.yml</code> should look something like this:</p>
-<pre class="yaml"><code>bookdown::gitbook:
-  includes:
-    in_header: header.html
-css: style.css
-</code></pre></li>
+<pre class="yaml"><code>---
+output:
+  bookdown::gitbook:
+    includes:
+      in_header: header.html
+    css: style.css
+---</code></pre></li>
 <li><p>Save and Close.</p></li>
 </ol>
 <p>My <a href="https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50a7410add7f653228927d38cdf0">commit here</a>.</p>
@@ -177,10 +181,16 @@ css: style.css
 </div>
 <div id="final-comments" class="section level2">
 <h2>Final comments</h2>
-<p>When you’re developing your bookdown site, you can control what the section link url will be when you add, for example, <code>{#mysection}</code> to the end of your headers.</p>
+<p>When you’re developing your bookdown site, you can control what the section link url will be when you add, for example, <code>{#mysection}</code> to the end of your headers.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
 <p>The hashtag you choose here is what will get included in you anchor-linked url. So, it’s a good idea to choose shorter, simpler <code>{#section}</code> names than <code>{#really-super-long-section-names-that-make-long-urls}</code> to make sure your url don’t become unwieldy when it’s time to share.</p>
 <p>Now you know everything you need to get started making anchor links for your bookdown books. If this post was useful to you, then give it a shout out on twitter. Have fun sharing links of your bookdown sections!!</p>
 <p><br />
 <br />
 </p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Read more about section header IDs in the <a href="https://bookdown.org/yihui/bookdown/cross-references.html">bookdown book</a><a href="#fnref1" class="footnote-back">↩</a></p></li>
+</ol>
 </div>

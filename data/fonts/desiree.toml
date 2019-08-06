@@ -1,5 +1,5 @@
 # Font style metadata
-name = "alison"
+name = "desiree"
 
 # Optional Google font URL
 google_fonts = "Abril+Fatface|Cutive+Mono|Josefin+Slab:300,400,600,700|Open+Sans:400,600,700,800|Raleway:300,400,500,600"
@@ -12,4 +12,4 @@ mono_font = "Cutive Mono"
 
 # Font size
 font_size = "18"
-font_size_small = "14"
+font_size_small = "15"

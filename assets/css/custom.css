@@ -10,8 +10,7 @@ body {
 #navbar-main.navbar-light.fixed-top {
     box-shadow: none;
     text-transform: lowercase;
-    background-image: linear-gradient(to bottom, rgba(252, 252, 252, 1), rgba(252,252,252,0)) !important;  
-    background: transparent !important;
+    background-image: linear-gradient(to bottom, #fcfcfc 50%, rgba(252,252,252,0)) !important;  
 }
 
 
@@ -20,8 +19,13 @@ h1, h2, h3 {
 }
 
 
+.hljs { /* code font size */
+font-size: 14px;
+padding: 1.5em;
+}
 
-/* About Section */
+
+/* -------About Section-------- */
 
 .home-section.wg-about {
   padding-top: 0;
@@ -56,3 +60,5 @@ h1, h2, h3 {
   background-attachment: fixed;
   width: 100%;
 }
+
+

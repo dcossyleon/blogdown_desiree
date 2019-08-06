@@ -32,7 +32,7 @@ Having these in a site is useful whenever you want to share a specific section w
 
 But in bookdown, there's no built-in way to create anchor links with an icon for each section header. The closest you can get is to right-click on the header within the table of contents (TOC) and copy its URL address. But sometimes the subsection you want to link to doesn't appear in the TOC, and you're out of luck.  
 
-Yihui mentions in [his blog](https://yihui.name/en/2018/11/md-js-tricks/#how-to-add-anchor-links-to-section-headings) how he uses a javascript trick to add this feature in. I thought I would build on this to with a short tutorial to walk you through how to do this in bookdown.
+Yihui mentions in [his blog](https://yihui.name/en/2018/11/md-js-tricks/#how-to-add-anchor-links-to-section-headings) how he uses a javascript trick to add this feature in. I thought I would build on this with a short tutorial to walk you through how to do this in bookdown.
 
 If you want to make linking to sections a little easier for yourself and for your bookdown site users, then follow the steps below to create your own anchor links for bookdown section headers.  
 

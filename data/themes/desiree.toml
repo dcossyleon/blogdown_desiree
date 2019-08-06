@@ -14,7 +14,7 @@ link = "#999999"
 link_hover = "#111111"
 
 # Menu
-menu_primary = "#fcfcfc" # This is being ignored?? So instead specifying in css
+menu_primary = "#fcfcfc00" 
 menu_text = "#999999"
 menu_text_active = "#111111"
 menu_title = "#111111"

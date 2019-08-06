@@ -192,11 +192,11 @@ We created all the anchor link infrastructure, now we just need to tell bookdown
 1. Open `output.yml`, located in your project directory
 2. Reference your HTML file with the `includes: in_header:` option underneath `bookdown::gitbook`. Make sure CSS file is also referenced. This part of your `output.yml` should look something like this:
 
-    ```{r, eval = FALSE}
-bookdown::gitbook:
-  includes:
-    in_header: header.html
-  css: style.css
+    ```yaml
+    bookdown::gitbook:
+      includes:
+        in_header: header.html
+    css: style.css
 
     ```
 

@@ -115,7 +115,7 @@ Here's a visual overview of the things that the CSS below specifies. But the onl
 1. `background-image`, which we'll add in a minute.  
 
 
-## Addings CSS styles
+## Adding CSS styles
 
 Let's create 4 div tips: a puzzle one, an FYI/background info one, one to use as a placeholder for a livecoding demo, and one for general tips. 
 
@@ -142,7 +142,7 @@ Let's create 4 div tips: a puzzle one, an FYI/background info one, one to use as
 1. Optionally, **give each div tip a different name** by changing the words after `div.`. You'll have to use this name later as you make content, so go with something short and sweet.  
 
 1. **Change the CSS property values** for `background-color:`, `color:`, and `border:` to suit your preferences. All four div tips will have these features. 
-    * Though we don't cover it here, you could also consider giving your div tips a different font than rest of your site by [choosing a Google font](https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file) and specifying the `font-family:` property in the CSS above.
+    * Though we don't cover it here, you could also consider giving your div tips a different font than the rest of your site by [choosing a Google font](https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file) and specifying the `font-family:` property in the CSS above.
 
 
 ## Add div tip icons

@@ -20,10 +20,31 @@ h1, h2, h3 {
 
 
 .hljs { /* code font size */
-font-size: 14px;
-padding: 1.5em;
+font-size: 16px;
+padding: 1rem;
 }
 
+
+/* --------Blog posts--------- */
+/* Headers within blogs */
+
+.article-style .section.level1 h1,
+.article-style .section.level2 h2,
+.article-style .section.level3 h3 {
+  padding-top: 2em;
+  padding-bottom: 1em;
+  font-weight: 700;
+}
+
+/* Links within blog posts */
+
+.article-style .section a {
+  color: #E14675;
+}
+
+.article-style .section a:hover {
+  color: #DCA0B2;
+}
 
 /* -------About Section-------- */
 
@@ -62,7 +83,7 @@ padding: 1.5em;
 }
 
 
-/*--- iframe*/
+/*------- iframe-----*/
 
 iframe { 
    -moz-transform-origin: top left; 

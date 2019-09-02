@@ -10,6 +10,7 @@ categories:
 tags:
   - markdown
   - r
+  - div-tips
 subtitle: '..in R Markdown, bookdown, and Distill'
 summary: ''
 authors: []
@@ -24,38 +25,33 @@ projects: []
 
 
 ```{r setup, include = FALSE}
-
-    library(ymlthis)
-    library(tidyverse)
-
+  library(ymlthis)
+  library(tidyverse)
 ```
 
 \
 
-After spending my summer with my nose in a book(down), I thought I'd share another tip for how to customize your R Markdown site, bookdown, Distill blog, etc.--by creating pretty tip boxes (aka custom blocks, sidebars, or div tips).
+While interning at Rstudio this summer, one of the many tricks I learned was how to create pretty tip boxes (aka custom blocks, sidebars, or as I like to call them, div tips) for your R Markdown, bookdown, or Distill site.
 
-For example: 
+Here is a **div tip**: 
 
 ![](div-tip.png)
 
 ## Under the hood
 
-These are Pandoc style custom divs, so they will work with any R Markdown flavored doc that uses Pandoc. (This means an R markdown document or site, bookdown, and Distill-- but not xaringan or blogdown).  
+These are Pandoc style custom divs, so they will work with any R Markdown flavored doc that uses Pandoc. (This means it will work with any R markdown document or site, bookdown, and Distill-- but not xaringan or blogdown).  
 
-Bookdown has some that are [built-in](https://bookdown.org/yihui/bookdown/custom-blocks.html), but there's a good chance these may not jive with your site's aesthetic. I learned that changing these was possible from [Alison Hill](https://twitter.com/apreshill) who learned about it via the [R Packages book](https://r-pkgs.org/)--you can see it in the [commit history](https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529).  
+Bookdown has some that are [built-in](https://bookdown.org/yihui/bookdown/custom-blocks.html), but there's a good chance the built-in div tips may not jive with your site's aesthetic. I learned that you could customize these from [Alison Hill](https://twitter.com/apreshill) who learned from the [R Packages book](https://r-pkgs.org/) and whose [commit history](https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529) you can also check out. 
 
-\
+## Why use div tips?
+You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader. 
 
-## Why use them?
-You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader. This makes your content more user-friendly, and as a bonus--using div tips gives you another opportunity to add more color and personalization to your site.  
-
+This makes your content more user-friendly, and as an added bonus--using div tips gives you another opportunity to add more color and personalization to your site.  
 
 And now it's time for me to walk you through some CSS so that you too can make your own pretty div tips!  
 
-\
 
 ## Making your own
-
 
 **What you need:**
 
@@ -63,19 +59,16 @@ And now it's time for me to walk you through some CSS so that you too can make y
 2. To link up your CSS file with your YAML
 3. Some small icon files to use for each different kind of div tip you want to make. 
 
-
 Let's make some!
 
-\
 
-
-## Getting set up
+## Infrastructure
 
 First we make a CSS file and link it up to our YAML. I'll show you how to do this whether you're working in an R Markdown document, Distill site, or bookdown  as your output.
 
 1. If you don't already have one, **create a CSS file** by going to *File* > *New File* > *Text File*.
 1. **Name** this file `style.css` (you can choose a different name) and save it in your project directory.
-1. **Link** your CSS file in your YAML:
+1. **Link** your CSS file in your YAML:  
 
 \
 
@@ -106,11 +99,12 @@ yml_empty() %>%
   
 Okay, now that we've got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.
 
-\
 
 ## Anatomy of a div tip
 
-Here's a visual overview of the things that the CSS below specifies. But the only properties you really need to think about changing for quick customization are these. You can choose these ahead of time.
+![](div-tip_annotate.png) 
+
+Here's a visual overview of the things that the CSS below specifies. But the only properties you really need to think about changing for quick customization are the ones below. You can choose these ahead of time.
 
 1. `background-color:` You can use the [hexcode color value](https://htmlcolorcodes.com/) for any background color that your heart desires.  
 
@@ -120,10 +114,6 @@ Here's a visual overview of the things that the CSS below specifies. But the onl
 
 1. `background-image`, which we'll add in a minute.  
 
-
-![](div-tip_annotate.png) 
-
-\
 
 ## Addings CSS styles
 
@@ -147,7 +137,6 @@ Let's create 4 div tips: a puzzle one, an FYI/background info one, one to use as
         background-color: #bed3ec;
         border: solid 5px #dfedff;
       }
-      
     ```
     
 1. Optionally, **give each div tip a different name** by changing the words after `div.`. You'll have to use this name later as you make content, so go with something short and sweet.  
@@ -155,7 +144,6 @@ Let's create 4 div tips: a puzzle one, an FYI/background info one, one to use as
 1. **Change the CSS property values** for `background-color:`, `color:`, and `border:` to suit your preferences. All four div tips will have these features. 
     * Though we don't cover it here, you could also consider giving your div tips a different font than rest of your site by [choosing a Google font](https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file) and specifying the `font-family:` property in the CSS above.
 
-\
 
 ## Add div tip icons
 
@@ -187,7 +175,6 @@ I like to choose a different background image for each div tip, so I create a ne
     ```
 4. **Change** the file path within the `url()` field for each div tip style so that it points to the image that you want to use.  
 
-\
 
 ## Use your div tips
 
@@ -203,8 +190,10 @@ Here are the four div tips we made:
 
 ![](all-four.png)
 
-Have fun creating content, and if you make a custom div tip you're proud of--let me know on twitter [\@dcossyle](https://twitter.com/dcossyle)!
+Have fun creating content, and if you make a custom div tip that you're proud of--let me know on twitter [\@dcossyle](https://twitter.com/dcossyle)!
 
+\
+\
 
 
 

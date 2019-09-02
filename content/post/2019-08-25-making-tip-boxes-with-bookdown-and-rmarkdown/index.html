@@ -10,6 +10,7 @@ categories:
 tags:
   - markdown
   - r
+  - div-tips
 subtitle: '..in R Markdown, bookdown, and Distill'
 summary: ''
 authors: []
@@ -26,22 +27,19 @@ projects: []
 
 <p><br />
 </p>
-<p>After spending my summer with my nose in a book(down), I thought I’d share another tip for how to customize your R Markdown site, bookdown, Distill blog, etc.–by creating pretty tip boxes (aka custom blocks, sidebars, or div tips).</p>
-<p>For example:</p>
+<p>While interning at Rstudio this summer, one of the many tricks I learned was how to create pretty tip boxes (aka custom blocks, sidebars, or as I like to call them, div tips) for your R Markdown, bookdown, or Distill site.</p>
+<p>Here is a <strong>div tip</strong>:</p>
 <p><img src="div-tip.png" /></p>
 <div id="under-the-hood" class="section level2">
 <h2>Under the hood</h2>
-<p>These are Pandoc style custom divs, so they will work with any R Markdown flavored doc that uses Pandoc. (This means an R markdown document or site, bookdown, and Distill– but not xaringan or blogdown).</p>
-<p>Bookdown has some that are <a href="https://bookdown.org/yihui/bookdown/custom-blocks.html">built-in</a>, but there’s a good chance these may not jive with your site’s aesthetic. I learned that changing these was possible from <a href="https://twitter.com/apreshill">Alison Hill</a> who learned about it via the <a href="https://r-pkgs.org/">R Packages book</a>–you can see it in the <a href="https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529">commit history</a>.</p>
-<p><br />
-</p>
+<p>These are Pandoc style custom divs, so they will work with any R Markdown flavored doc that uses Pandoc. (This means it will work with any R markdown document or site, bookdown, and Distill– but not xaringan or blogdown).</p>
+<p>Bookdown has some that are <a href="https://bookdown.org/yihui/bookdown/custom-blocks.html">built-in</a>, but there’s a good chance the built-in div tips may not jive with your site’s aesthetic. I learned that you could customize these from <a href="https://twitter.com/apreshill">Alison Hill</a> who learned from the <a href="https://r-pkgs.org/">R Packages book</a> and whose <a href="https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529">commit history</a> you can also check out.</p>
 </div>
-<div id="why-use-them" class="section level2">
-<h2>Why use them?</h2>
-<p>You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader. This makes your content more user-friendly, and as a bonus–using div tips gives you another opportunity to add more color and personalization to your site.</p>
+<div id="why-use-div-tips" class="section level2">
+<h2>Why use div tips?</h2>
+<p>You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader.</p>
+<p>This makes your content more user-friendly, and as an added bonus–using div tips gives you another opportunity to add more color and personalization to your site.</p>
 <p>And now it’s time for me to walk you through some CSS so that you too can make your own pretty div tips!</p>
-<p><br />
-</p>
 </div>
 <div id="making-your-own" class="section level2">
 <h2>Making your own</h2>
@@ -52,11 +50,9 @@ projects: []
 <li>Some small icon files to use for each different kind of div tip you want to make.</li>
 </ol>
 <p>Let’s make some!</p>
-<p><br />
-</p>
 </div>
-<div id="getting-set-up" class="section level2">
-<h2>Getting set up</h2>
+<div id="infrastructure" class="section level2">
+<h2>Infrastructure</h2>
 <p>First we make a CSS file and link it up to our YAML. I’ll show you how to do this whether you’re working in an R Markdown document, Distill site, or bookdown as your output.</p>
 <ol style="list-style-type: decimal">
 <li>If you don’t already have one, <strong>create a CSS file</strong> by going to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em>.</li>
@@ -78,21 +74,17 @@ projects: []
   bookdown::gitbook:
     css: style.css</code></pre>
 <p>Okay, now that we’ve got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.</p>
-<p><br />
-</p>
 </div>
 <div id="anatomy-of-a-div-tip" class="section level2">
 <h2>Anatomy of a div tip</h2>
-<p>Here’s a visual overview of the things that the CSS below specifies. But the only properties you really need to think about changing for quick customization are these. You can choose these ahead of time.</p>
+<p><img src="div-tip_annotate.png" /></p>
+<p>Here’s a visual overview of the things that the CSS below specifies. But the only properties you really need to think about changing for quick customization are the ones below. You can choose these ahead of time.</p>
 <ol style="list-style-type: decimal">
 <li><p><code>background-color:</code> You can use the <a href="https://htmlcolorcodes.com/">hexcode color value</a> for any background color that your heart desires.</p></li>
 <li><p><code>color:</code> ^ Sames goes for the color of the text in your div tip.</p></li>
 <li><p><code>border:</code> Of course, you don’t have to choose a border, but there are some fun options to play with. Thickness and color are self-explanatory, but you may not know about being to choose the border’s style (see <a href="https://css-tricks.com/almanac/properties/b/border/">options here</a>, e.g. <code>dotted</code>,<code>dashed</code>, <code>double</code>, or if you’re feeling wild see what happens when you specify more than one).</p></li>
 <li><p><code>background-image</code>, which we’ll add in a minute.</p></li>
 </ol>
-<p><img src="div-tip_annotate.png" /></p>
-<p><br />
-</p>
 </div>
 <div id="addings-css-styles" class="section level2">
 <h2>Addings CSS styles</h2>
@@ -113,16 +105,13 @@ projects: []
     color: #1f5386;
     background-color: #bed3ec;
     border: solid 5px #dfedff;
-  }
-</code></pre></li>
+  }</code></pre></li>
 <li><p>Optionally, <strong>give each div tip a different name</strong> by changing the words after <code>div.</code>. You’ll have to use this name later as you make content, so go with something short and sweet.</p></li>
 <li><strong>Change the CSS property values</strong> for <code>background-color:</code>, <code>color:</code>, and <code>border:</code> to suit your preferences. All four div tips will have these features.
 <ul>
 <li>Though we don’t cover it here, you could also consider giving your div tips a different font than rest of your site by <a href="https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file">choosing a Google font</a> and specifying the <code>font-family:</code> property in the CSS above.</li>
 </ul></li>
 </ol>
-<p><br />
-</p>
 </div>
 <div id="add-div-tip-icons" class="section level2">
 <h2>Add div tip icons</h2>
@@ -153,8 +142,6 @@ div.note {
 }</code></pre></li>
 <li><p><strong>Change</strong> the file path within the <code>url()</code> field for each div tip style so that it points to the image that you want to use.</p></li>
 </ol>
-<p><br />
-</p>
 </div>
 <div id="use-your-div-tips" class="section level2">
 <h2>Use your div tips</h2>
@@ -164,5 +151,8 @@ My content goes in here!
 :::</code></pre>
 <p>Here are the four div tips we made:</p>
 <p><img src="all-four.png" /></p>
-<p>Have fun creating content, and if you make a custom div tip you’re proud of–let me know on twitter <a href="https://twitter.com/dcossyle">@dcossyle</a>!</p>
+<p>Have fun creating content, and if you make a custom div tip that you’re proud of–let me know on twitter <a href="https://twitter.com/dcossyle">@dcossyle</a>!</p>
+<p><br />
+<br />
+</p>
 </div>

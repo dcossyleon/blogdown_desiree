@@ -64,11 +64,8 @@ If you're not viewing this on a tablet or mobile, here's what the [final product
 Adding all this in is a little bit like wrapping a present in a box, in a box, in another box... The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the `_output.yml` file. And bookdown then uses the `_output.yml` file to implement the javascript code and link to the CSS that styles the anchors. 
 
 ![](many_boxes.jpg)
-\
 
 ## Let's get started!  
-
-\
 
 You can add anchor links to any book that you've already started. 
 
@@ -80,12 +77,9 @@ bookdown:::bookdown_skeleton(getwd())
 
 After running this command, I [commit](https://github.com/dcossyleon/anchor_book/commit/86ebbf94442ad2127a0c447823bfd6150be80291) to GitHub. 
 
-\
-\
 
 ## 1) Add javascript to make anchor links for all section headers
 
-\
 
 We'll make a new file with a few lines of javascript that essentially say "find every section header, and tack on a link to itself right before that header". The other important thing the javascript file will do is to add a CSS class "hasAnchor" to each of the headers. This is part of what will allow to style our anchor links with CSS in a couple steps.
 
@@ -94,14 +88,14 @@ We'll make a new file with a few lines of javascript that essentially say "find 
 1. Paste the javascript below into this file.
 
     ```{js, eval = FALSE}
-$(document).ready(function() {
-
-  // Section anchors
-  $('.section h1, .section h2, .section h3, .section h4, .section h5').each(function() {
-    anchor = '#' + $(this).parent().attr('id');
-    $(this).addClass("hasAnchor").prepend('<a href="' + anchor + '" class="anchor"></a>');
-  });
-});
+    $(document).ready(function() {
+    
+      // Section anchors
+      $('.section h1, .section h2, .section h3, .section h4, .section h5').each(function() {
+        anchor = '#' + $(this).parent().attr('id');
+        $(this).addClass("hasAnchor").prepend('<a href="' + anchor + '" class="anchor"></a>');
+      });
+    });
 
     ```
     
@@ -111,12 +105,8 @@ Phew--you're done with the javascript code now!
 
 [Commit](https://github.com/dcossyleon/anchor_book/commit/b53c7f06660338754fc6dc10180710d935fcecd2) this new file to GitHub. 
 
-\
-\
 
 ## 2) Embed `book.js` into HTML file
-
-\
 
 We'll make an HTML file that will refer to our javascript file.
 
@@ -125,19 +115,14 @@ We'll make an HTML file that will refer to our javascript file.
 1. Paste the line below into this file. Modify the path in quotes to point to your javascript file if yours is not in your working directory. (*Note*: This little line of code will be automatically injected within our bookdown's existing `<html>` and `<head>` tags, when we later use `includes: in_header:`, so there's no need to include these tags in this HTML file, but nothing bad will happen if you do). 
 
     ```html
-<script src="book.js"></script>
+    <script src="book.js"></script>
     ```
 
 1. Save this file as `header.html` in your project directory. You can choose a different name if you'd like. 
 
 [Commit](https://github.com/dcossyleon/anchor_book/commit/5fcb3fcc5b355110b656f2dd0a30b7c8f142ae1b) your HTML file to GitHub. 
 
-\
-\
-
 ## 3) Add CSS to show anchor links
-
-\
 
 In our javascript code, we had the class "hasAnchor" be programatically added to our sections headers. So, we can now style them so that each time we hover over the section header, the anchor link icon will become visible. 
 
@@ -192,12 +177,8 @@ If you want a few more details about what's going on here, here's a crude summar
 
 Here's my [commit](https://github.com/dcossyleon/anchor_book/commit/29900eeec766970e83282dda4e9e77e259aa9ce3) after modifying my CSS file. 
 
-\
-\
 
 ## 4) Add anchor link elements to `_output.yml`
-
-\
 
 We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our `_output.yml`.
 
@@ -218,20 +199,13 @@ We created all the anchor link infrastructure, now we just need to tell bookdown
 
 My [commit here](https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50a7410add7f653228927d38cdf0).
 
-\
-\
 
 ## 5) Preview your book 
-
-\
 
 And enjoy your handywork! 
 
 View all my commits for this post [here](https://github.com/dcossyleon/anchor_book/commits/master).  
 
-
-\
-\
 
 ## Final comments
 

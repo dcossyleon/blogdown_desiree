@@ -27,19 +27,22 @@ projects: []
 
 <p><br />
 </p>
-<p>While interning at RStudio this summer, one of the many tricks I learned was how to create pretty tip boxes (aka custom blocks, sidebars, or –as I like to call them– “div tips”) for your R Markdown, bookdown, Distill site, or Blogdown <code>.Rmd</code> post.</p>
-<p>My summer project with <a href="https://twitter.com/apreshill">Alison Hill</a> was a bookdown book called <strong>rstudio4edu</strong> (coming soon!), and for this project we wanted to create customized div tips and also include them in a series of site templates (also coming soon!) geared towards educators using R Markdown, bookdown, etc. That experience is what motivated this post!</p>
+<p>My summer intern project with <a href="https://twitter.com/apreshill">Alison Hill</a> was a bookdown book called <strong>rstudio4edu</strong> (<em>coming soon!</em>), and for this project we wanted to create custom, pretty tip boxes (aka custom blocks, sidebars, or –as I like to call them– “div tips”) to use in the book we were writing. We also wanted to include them in a series of site templates geared towards educators (<em>also coming soon!</em>), using R Markdown, bookdown, etc. The experience of creating my own div tips is what motivated this post!</p>
 <p>Here’s an example of a <strong>div tip</strong>. I will show you how to make this.</p>
 <p><img src="div-tip.png" /></p>
+<p>Here’s another:</p>
+<div class="note">
+<p>This is a div tip that I customized specifically for this blog.</p>
+</div>
 <div id="under-the-hood-part-i" class="section level2">
 <h2>Under the hood, Part I</h2>
-<p>This is a <a href="https://www.pandoc.org/MANUAL.html#divs-and-spans">Pandoc style custom div</a>, so it will work with any R Markdown flavored doc that uses Pandoc. This means any R markdown document, site, bookdown, Distill, and blogdown <code>.Rmd</code> post is fair game– but div tips will <em>not</em> work for xaringan or blogdown <code>.md</code> or <code>.Rmarkdown</code> posts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<p>Bookdown has some div tips that are <a href="https://bookdown.org/yihui/bookdown/custom-blocks.html">built-in</a>, but there’s a good chance the built-in styles may not jive with your site’s aesthetic. I learned that these could be customized from <a href="https://twitter.com/apreshill">Alison</a> who learned about it from the <a href="https://r-pkgs.org/">R Packages book</a>(you can check out the book’s <a href="https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529">commit history</a>).</p>
+<p>These are <a href="https://www.pandoc.org/MANUAL.html#divs-and-spans">Pandoc style custom divs</a>, so they will work with any R Markdown flavored doc that uses Pandoc. This means any R markdown document, site, bookdown book, Distill site, and blogdown <code>.Rmd</code> post is fair game– but div tips will <em>not</em> work for xaringan or blogdown <code>.md</code> or <code>.Rmarkdown</code> posts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Bookdown has some div tips that are <a href="https://bookdown.org/yihui/bookdown/custom-blocks.html">built-in</a>, but there’s a good chance the built-in styles may not jive with your site’s aesthetic. I learned that these could be customized from Alison, who learned about it from the <a href="https://r-pkgs.org/">R Packages book</a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 </div>
 <div id="why-use-div-tips" class="section level2">
 <h2>Why use div tips?</h2>
-<p>You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader.</p>
-<p>This makes your content more user-friendly, and as an added bonus–using div tips gives you another opportunity to add more color and personalization to your site.</p>
+<p>You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions for your reader (just to name a few ideas).</p>
+<p>This makes your content more user-friendly, and as an added bonus, using div tips gives you another opportunity to add more color and personalization to your site.</p>
 <p>And now it’s time for me to walk you through some CSS so that you too can make your own pretty div tips!</p>
 </div>
 <div id="making-your-own" class="section level2">
@@ -57,14 +60,14 @@ projects: []
 <p>First we make a CSS file and link it up to our YAML. I’ll show you how to do this whether you’re working in an R Markdown doc/site, Distill article/site, bookdown, or an <code>.Rmd</code> blogdown post (like this very post) as your output.</p>
 <ol style="list-style-type: decimal">
 <li>If you don’t already have one, <strong>create a CSS file</strong> by going to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em>.</li>
-<li><strong>Name</strong> this file <code>style.css</code> (you can choose a different name) and save it in your project directory.</li>
-<li><strong>Link</strong> your CSS file in your YAML:</li>
+<li><strong>Name this file <code>style.css</code></strong> (you can choose a different name) and save it in your project directory.</li>
+<li><strong>Link your CSS file in your YAML</strong> (detailed below)</li>
 </ol>
 <p><br />
 </p>
 <p><strong>For <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#common-elements">R Markdown</a> or <a href="https://rstudio.github.io/distill/website.html">Distill</a></strong></p>
 <p>If you’re working in an R Markdown or a Distill site, then you’ll want to open the file <code>_site.yml</code> and add the following as part of your output.</p>
-<p>(Or, if you’re not making a site and are instead working with an individual <a href="https://rmarkdown.rstudio.com/docs/reference/html_document.html">R Markdown document</a>, <a href="https://rstudio.github.io/distill/basics.html">Distill article</a>, or <a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document">single document à la bookdown</a>, then you’d add this to the YAML frontmatter of your doc instead. But for Distill or single bookdown documents, make sure you substitute <code>html_document</code> for the output type that you’re using).</p>
+<p>(Or, if you’re not making a site and are instead working with an individual <a href="https://rmarkdown.rstudio.com/docs/reference/html_document.html">R Markdown document</a>, <a href="https://rstudio.github.io/distill/basics.html">Distill article</a>, or <a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document">single document à la bookdown</a>, then you’d add this to the YAML frontmatter of your doc instead, substituting <code>html_document</code> for the appropriate output if you’re creating a <code>distill::distill_article:</code> or a <code>bookdown::html_document2</code>.</p>
 <pre class="yaml"><code>output:
   html_document:
     css: style.css</code></pre>
@@ -75,9 +78,9 @@ projects: []
 <pre class="yaml"><code>output:
   bookdown::gitbook:
     css: style.css</code></pre>
-<p>Okay, now that we’ve got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.</p>
-<p><strong>For blogdown, using the Hugo Academic theme</strong></p>
+<p><strong>For <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>, using the Hugo Academic theme</strong></p>
 <p>If you’re creating an <code>.Rmd</code> post within blogdown’s Hugo Academic theme, then you’ll follow the directions <a href="https://sourcethemes.com/academic/docs/customization/#customize-style-css">here</a> to add your own <code>style.css</code> file (note that the example in the link above names their CSS file “custom.css”, and you can do that too, if you want).</p>
+<p>Okay, now that we’ve got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.</p>
 </div>
 <div id="anatomy-of-a-div-tip" class="section level2">
 <h2>Anatomy of a div tip</h2>
@@ -110,7 +113,7 @@ projects: []
     background-color: #bed3ec;
     border: solid 5px #dfedff;
   }</code></pre></li>
-<li><p>Optionally, <strong>give each div tip a different name</strong> by changing the words after <code>div.</code>. You’ll have to use this name later as you make content, so go with something short and sweet.</p></li>
+<li><p>Optionally, <strong>give each div tip a different name</strong> by changing the word after <code>div.</code>. You’ll have to use this name later as you make content, so go with something short and sweet.</p></li>
 <li><strong>Change the CSS property values</strong> for <code>background-color:</code>, <code>color:</code>, and <code>border:</code> to suit your preferences. All four div tips will have these features.
 <ul>
 <li>Though we don’t cover it here, you could also consider giving your div tips a different font than the rest of your site by <a href="https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file">choosing a Google font</a> and specifying the <code>font-family:</code> property in the CSS above.</li>
@@ -192,6 +195,7 @@ My content goes in here!
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>for the curious reader, you can check out Figures 2 &amp; 3 of Emi Tanaka’s <a href="https://emitanaka.org/r/posts/2018-12-12-scientific-and-technical-blogging-radix-vs-blogdown/">blog post</a> for a visual of how Pandoc comes into the framework for Distill (formerly Radix) and blogdown <code>.Rmd</code> posts, but not blogdown <code>.md</code> or <code>.Rmarkdown</code> posts<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>For the curious reader, check out Figures 2 &amp; 3 of Emi Tanaka’s <a href="https://emitanaka.org/r/posts/2018-12-12-scientific-and-technical-blogging-radix-vs-blogdown/">blog post</a> for a visual of how Pandoc comes into the framework for Distill (formerly Radix) and blogdown <code>.Rmd</code> posts, but not blogdown <code>.md</code> or <code>.Rmarkdown</code> posts.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>You can see the custom divs being implemented in the R Packages book’s <a href="https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529">commit history</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
 </ol>
 </div>

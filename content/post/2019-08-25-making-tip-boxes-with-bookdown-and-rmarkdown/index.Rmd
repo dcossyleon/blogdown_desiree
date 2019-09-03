@@ -31,25 +31,28 @@ projects: []
 
 \
 
-While interning at RStudio this summer, one of the many tricks I learned was how to create pretty tip boxes (aka custom blocks, sidebars, or --as I like to call them-- "div tips") for your R Markdown, bookdown, Distill site, or Blogdown `.Rmd` post.
-
-My summer project with [Alison Hill](https://twitter.com/apreshill) was a bookdown book called **rstudio4edu** (coming soon!), and for this project we wanted to create customized div tips and also include them in a series of site templates (also coming soon!) geared towards educators using R Markdown, bookdown, etc. That experience is what motivated this post!
+My summer intern project with [Alison Hill](https://twitter.com/apreshill) was a bookdown book called **rstudio4edu** (*coming soon!*), and for this project we wanted to create custom, pretty tip boxes (aka custom blocks, sidebars, or --as I like to call them-- "div tips") to use in the book we were writing. We also wanted to include them in a series of site templates geared towards educators (*also coming soon!*), using R Markdown, bookdown, etc. The experience of creating my own div tips is what motivated this post!
 
 Here's an example of a **div tip**. I will show you how to make this.
 
 ![](div-tip.png)
 
+Here's another: 
+
+:::note
+This is a div tip that I customized specifically for this blog.
+:::
 
 ## Under the hood, Part I
 
-This is a [Pandoc style custom div](https://www.pandoc.org/MANUAL.html#divs-and-spans), so it will work with any R Markdown flavored doc that uses Pandoc. This means any R markdown document, site, bookdown, Distill, and blogdown `.Rmd` post is fair game-- but div tips will *not* work for xaringan or blogdown `.md` or `.Rmarkdown` posts.^[for the curious reader, you can check out Figures 2 & 3 of Emi Tanaka's [blog post](https://emitanaka.org/r/posts/2018-12-12-scientific-and-technical-blogging-radix-vs-blogdown/) for a visual of how Pandoc comes into the framework for Distill (formerly Radix) and blogdown `.Rmd` posts, but not blogdown `.md` or `.Rmarkdown` posts] 
+These are [Pandoc style custom divs](https://www.pandoc.org/MANUAL.html#divs-and-spans), so they will work with any R Markdown flavored doc that uses Pandoc. This means any R markdown document, site, bookdown book, Distill site, and blogdown `.Rmd` post is fair game-- but div tips will *not* work for xaringan or blogdown `.md` or `.Rmarkdown` posts.^[For the curious reader, check out Figures 2 & 3 of Emi Tanaka's [blog post](https://emitanaka.org/r/posts/2018-12-12-scientific-and-technical-blogging-radix-vs-blogdown/) for a visual of how Pandoc comes into the framework for Distill (formerly Radix) and blogdown `.Rmd` posts, but not blogdown `.md` or `.Rmarkdown` posts.] 
 
-Bookdown has some div tips that are [built-in](https://bookdown.org/yihui/bookdown/custom-blocks.html), but there's a good chance the built-in styles may not jive with your site's aesthetic. I learned that these could be customized from [Alison](https://twitter.com/apreshill) who learned about it from the [R Packages book](https://r-pkgs.org/)(you can check out the book's [commit history](https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529)). 
+Bookdown has some div tips that are [built-in](https://bookdown.org/yihui/bookdown/custom-blocks.html), but there's a good chance the built-in styles may not jive with your site's aesthetic. I learned that these could be customized from Alison, who learned about it from the [R Packages book](https://r-pkgs.org/) ^[You can see the custom divs being implemented in the R Packages book's [commit history](https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529)]. 
 
 ## Why use div tips?
-You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions (just to name a few ideas) for your reader. 
+You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions for your reader (just to name a few ideas). 
 
-This makes your content more user-friendly, and as an added bonus--using div tips gives you another opportunity to add more color and personalization to your site.  
+This makes your content more user-friendly, and as an added bonus, using div tips gives you another opportunity to add more color and personalization to your site.  
 
 And now it's time for me to walk you through some CSS so that you too can make your own pretty div tips!  
 
@@ -70,8 +73,8 @@ Let's make some!
 First we make a CSS file and link it up to our YAML. I'll show you how to do this whether you're working in an R Markdown doc/site, Distill article/site, bookdown, or an `.Rmd` blogdown post (like this very post) as your output.
 
 1. If you don't already have one, **create a CSS file** by going to *File* > *New File* > *Text File*.
-1. **Name** this file `style.css` (you can choose a different name) and save it in your project directory.
-1. **Link** your CSS file in your YAML:  
+1. **Name this file `style.css`** (you can choose a different name) and save it in your project directory.
+1. **Link your CSS file in your YAML** (detailed below)
 
 \
 
@@ -79,7 +82,7 @@ First we make a CSS file and link it up to our YAML. I'll show you how to do thi
 
 If you're working in an R Markdown or a Distill site, then you'll want to open the file `_site.yml` and add the following as part of your output. 
 
-(Or, if you're not making a site and are instead working with an individual [R Markdown document](https://rmarkdown.rstudio.com/docs/reference/html_document.html), [Distill article](https://rstudio.github.io/distill/basics.html), or [single document à la bookdown](https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document), then you'd add this to the YAML frontmatter of your doc instead. But for Distill or single bookdown documents, make sure you substitute `html_document` for the output type that you're using).
+(Or, if you're not making a site and are instead working with an individual [R Markdown document](https://rmarkdown.rstudio.com/docs/reference/html_document.html), [Distill article](https://rstudio.github.io/distill/basics.html), or [single document à la bookdown](https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document), then you'd add this to the YAML frontmatter of your doc instead, substituting `html_document` for the appropriate output if you're creating a `distill::distill_article:` or a `bookdown::html_document2`.
 
 ```{r echo = FALSE}
     yml_empty() %>%
@@ -100,13 +103,14 @@ yml_empty() %>%
     asis_yaml_output(fences = FALSE)
 
 ```
-  
-Okay, now that we've got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.
 
-**For blogdown, using the Hugo Academic theme**
+
+**For [blogdown](https://bookdown.org/yihui/blogdown/), using the Hugo Academic theme**
 
 If you're creating an `.Rmd` post within blogdown's Hugo Academic theme, then you'll follow the directions [here](https://sourcethemes.com/academic/docs/customization/#customize-style-css) to add your own `style.css` file (note that the example in the link above names their CSS file "custom.css", and you can do that too, if you want).
 
+
+Okay, now that we've got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.
 
 ## Anatomy of a div tip
 
@@ -147,7 +151,7 @@ Let's create 4 div tips: a puzzle one, an FYI/background info one, one to use as
       }
     ```
     
-1. Optionally, **give each div tip a different name** by changing the words after `div.`. You'll have to use this name later as you make content, so go with something short and sweet.  
+1. Optionally, **give each div tip a different name** by changing the word after `div.`. You'll have to use this name later as you make content, so go with something short and sweet.  
 
 1. **Change the CSS property values** for `background-color:`, `color:`, and `border:` to suit your preferences. All four div tips will have these features. 
     * Though we don't cover it here, you could also consider giving your div tips a different font than the rest of your site by [choosing a Google font](https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file) and specifying the `font-family:` property in the CSS above.

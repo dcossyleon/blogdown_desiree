@@ -1,0 +1,200 @@
+---
+title: Making pretty note boxes
+author: Desirée De Leon
+date: '2019-08-25'
+slug: making-tip-boxes-with-bookdown-and-rmarkdown
+categories:
+  - bookdown
+  - R
+  - Rmd
+tags:
+  - markdown
+  - r
+  - div-tips
+subtitle: 'A div tip for all occasions'
+summary: ''
+authors: []
+lastmod: '2019-08-25T22:45:26-04:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+
+
+<p><br />
+</p>
+<p>My summer intern project with <a href="https://twitter.com/apreshill">Alison Hill</a> was a bookdown book called <strong>rstudio4edu</strong> (<em>coming soon!</em>), and for this project we wanted to create custom, pretty tip boxes (aka custom blocks, sidebars, or –as I like to call them– “div tips”) to use in the book we were writing. We also wanted to include them in a series of site templates geared towards educators (<em>also coming soon!</em>), using R Markdown, bookdown, etc. The experience of creating my own div tips is what motivated this post!</p>
+<p>Here’s an example of a <strong>div tip</strong>. I will show you how to make this.</p>
+<p><img src="div-tip.png" /></p>
+<p>Here’s another:</p>
+<div class="note">
+<p>This is a div tip that I customized specifically for this blog.</p>
+</div>
+<div id="under-the-hood-part-i" class="section level2">
+<h2>Under the hood, Part I</h2>
+<p>These are <a href="https://www.pandoc.org/MANUAL.html#divs-and-spans">Pandoc style custom divs</a>, so they will work with any R Markdown flavored doc that uses Pandoc. This means any R markdown document, site, bookdown book, Distill site, and blogdown <code>.Rmd</code> post is fair game– but div tips will <em>not</em> work for xaringan or blogdown <code>.md</code> or <code>.Rmarkdown</code> posts.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<p>Bookdown has some div tips that are <a href="https://bookdown.org/yihui/bookdown/custom-blocks.html">built-in</a>, but there’s a good chance the built-in styles may not jive with your site’s aesthetic. I learned that these could be customized from Alison, who learned about it from the <a href="https://r-pkgs.org/">R Packages book</a> <a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+</div>
+<div id="why-use-div-tips" class="section level2">
+<h2>Why use div tips?</h2>
+<p>You can interject different versions of these little buddies throughout your site to point out notes, common mistakes, workflow shortcuts, or critical thinking questions for your reader (just to name a few ideas).</p>
+<p>This makes your content more user-friendly, and as an added bonus, using div tips gives you another opportunity to add more color and personalization to your site.</p>
+<p>And now it’s time for me to walk you through some CSS so that you too can make your own pretty div tips!</p>
+</div>
+<div id="making-your-own" class="section level2">
+<h2>Making your own</h2>
+<p><strong>What you need:</strong></p>
+<ol style="list-style-type: decimal">
+<li>CSS</li>
+<li>To link up your CSS file with your YAML</li>
+<li>Some small icon files to use for each different kind of div tip you want to make.</li>
+</ol>
+<p>Let’s make some!</p>
+</div>
+<div id="infrastructure" class="section level2">
+<h2>Infrastructure</h2>
+<p>First we make a CSS file and link it up to our YAML. I’ll show you how to do this whether you’re working in an R Markdown doc/site, Distill article/site, bookdown, or an <code>.Rmd</code> blogdown post (like this very post) as your output.</p>
+<ol style="list-style-type: decimal">
+<li>If you don’t already have one, <strong>create a CSS file</strong> by going to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em>.</li>
+<li><strong>Name this file <code>style.css</code></strong> (you can choose a different name) and save it in your project directory.</li>
+<li><strong>Link your CSS file in your YAML</strong> (detailed below)</li>
+</ol>
+<p><br />
+</p>
+<p><strong>For <a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html#common-elements">R Markdown</a> or <a href="https://rstudio.github.io/distill/website.html">Distill</a></strong></p>
+<p>If you’re working in an R Markdown or a Distill site, then you’ll want to open the file <code>_site.yml</code> and add the following as part of your output.</p>
+<p>(Or, if you’re not making a site and are instead working with an individual <a href="https://rmarkdown.rstudio.com/docs/reference/html_document.html">R Markdown document</a>, <a href="https://rstudio.github.io/distill/basics.html">Distill article</a>, or <a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document">single document à la bookdown</a>, then you’d add this to the YAML frontmatter of your doc instead, substituting <code>html_document</code> for the appropriate output if you’re creating a <code>distill::distill_article:</code> or a <code>bookdown::html_document2</code>.</p>
+<pre class="yaml"><code>output:
+  html_document:
+    css: style.css</code></pre>
+<p><br />
+</p>
+<p><strong>For a <a href="https://bookdown.org/yihui/rmarkdown/books.html">bookdown</a> in the <a href="https://bookdown.org/yihui/rmarkdown/bookdown-output.html#html">Gitbook</a> style</strong></p>
+<p>If you’re working in bookdown, do this by making sure your <code>_output.yml</code> has this:</p>
+<pre class="yaml"><code>output:
+  bookdown::gitbook:
+    css: style.css</code></pre>
+<p><strong>For <a href="https://bookdown.org/yihui/blogdown/">blogdown</a>, using the Hugo Academic theme</strong></p>
+<p>If you’re creating an <code>.Rmd</code> post within blogdown’s Hugo Academic theme, then you’ll follow the directions <a href="https://sourcethemes.com/academic/docs/customization/#customize-style-css">here</a> to add your own <code>style.css</code> file (note that the example in the link above names their CSS file “custom.css”, and you can do that too, if you want).</p>
+<p>Okay, now that we’ve got that setup out of the way, we can start thinking about what to put in our CSS file to style our div tips.</p>
+</div>
+<div id="anatomy-of-a-div-tip" class="section level2">
+<h2>Anatomy of a div tip</h2>
+<p><img src="div-tip_annotate.png" /></p>
+<p>Here’s a visual overview of the things that the CSS below specifies. But the only properties you really need to think about changing for quick customization are the ones below. You can choose these ahead of time.</p>
+<ol style="list-style-type: decimal">
+<li><p><code>background-color:</code> You can use the <a href="https://htmlcolorcodes.com/">hexcode color value</a> for any background color that your heart desires.</p></li>
+<li><p><code>color:</code> ^ Sames goes for the color of the text in your div tip.</p></li>
+<li><p><code>border:</code> Of course, you don’t have to choose a border, but there are some fun options to play with. Thickness and color are self-explanatory, but you may not know about being to choose the border’s style (see <a href="https://css-tricks.com/almanac/properties/b/border/">options here</a>, e.g. <code>dotted</code>,<code>dashed</code>, <code>double</code>, or if you’re feeling wild, use <code>border-left:</code>, <code>border-right:</code>, etc. to give different sides different styles).</p></li>
+<li><p><code>background-image</code>, which we’ll add in a minute.</p></li>
+</ol>
+</div>
+<div id="adding-css-styles" class="section level2">
+<h2>Adding CSS styles</h2>
+<p>Let’s create 4 div tips: a puzzle one, an FYI/background info one, one to use as a placeholder for a live-coding demo, and one for general tips.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Open</strong> up <code>style.css</code> and paste the the CSS below into the file.</li>
+<li><p><strong>Paste</strong> the CSS below into this file.</p>
+<pre class="style.css"><code>/* -----------div tips------------- */
+
+  div.puzzle, div.fyi, div.demo, div.note {
+    padding: 1em;
+    margin: 1em 0;
+    padding-left: 100px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    min-height: 120px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: solid 5px #dfedff;
+  }</code></pre></li>
+<li><p>Optionally, <strong>give each div tip a different name</strong> by changing the word after <code>div.</code>. You’ll have to use this name later as you make content, so go with something short and sweet.</p></li>
+<li><strong>Change the CSS property values</strong> for <code>background-color:</code>, <code>color:</code>, and <code>border:</code> to suit your preferences. All four div tips will have these features.
+<ul>
+<li>Though we don’t cover it here, you could also consider giving your div tips a different font than the rest of your site by <a href="https://stackoverflow.com/questions/14676613/how-to-import-google-web-font-in-css-file">choosing a Google font</a> and specifying the <code>font-family:</code> property in the CSS above.</li>
+</ul></li>
+</ol>
+</div>
+<div id="add-div-tip-icons" class="section level2">
+<h2>Add div tip icons</h2>
+<p>I like to choose a different background image for each div tip, so I create a new style rule for each div tip so that I can give each one its own icon.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Pick an image</strong> for each of your div tips.
+<ul>
+<li>Don’t have images? You can download the ones that I’ve made <a href="div-icons.zip">here</a>, or you can download some free open-source ones <a href="http://aiconica.net/">here</a>.</li>
+<li>Use <code>.PNG</code> images with transparent backgrounds so it doesn’t clash with your background.</li>
+</ul></li>
+<li><strong>Save</strong> the images in your project directory.</li>
+<li><strong>Open</strong> <code>style.css</code>.</li>
+<li><p><strong>Paste</strong> the style rules below into your CSS.</p>
+<pre class="style.css"><code>div.puzzle {
+  background-image: url(&quot;Your-turn.png&quot;);
+}
+
+div.fyi {
+ background-image: url(&quot;fyi.png&quot;);
+}
+
+div.demo {
+  background-image: url(&quot;Live-code.png&quot;);
+}
+
+div.note {
+  background-image: url(&quot;lightbulb.png&quot;);
+}</code></pre></li>
+<li><p><strong>Change</strong> the file path within the <code>url()</code> field for each div tip style so that it points to the image that you want to use.</p></li>
+</ol>
+<div class="fyi">
+<p><strong>File paths</strong>: Don’t be thrown off by the <code>url()</code> bit— you can put a regular, local filepath in here that points to your image’s location <em>relative to where your CSS file lives</em>. My your example code above assumes that your images are located in the same folder as your CSS file. But if your icons are in a different folder, you’ll need to account for that in your file path. If this is new to you, then <a href="https://css-tricks.com/quick-reminder-about-file-paths/">this site has a good example of how to navigate</a>.</p>
+</div>
+<div class="note">
+<p><strong>Blogdown weirdness</strong>: The Hugo academic theme will compile your files in a way that doesn’t necessarily reflect the way you’ve organized your directories. So, using the filepath tips above aren’t as straightforward. I found that if you follow stuff it should work:</p>
+<ol style="list-style-type: decimal">
+<li>Place your image icon files in the <code>static/</code> folder of your project directory.</li>
+<li>Make sure your CSS file is in <code>assets/css/</code>.</li>
+<li><p>Use a filepath like <code>&quot;../my-image.png&quot;</code>. For example:</p>
+<pre><code>div.puzzle {
+  background-image: url(&quot;../Your-turn.png&quot;);
+}</code></pre></li>
+</ol>
+</div>
+</div>
+<div id="use-your-div-tips" class="section level2">
+<h2>Use your div tips</h2>
+<p>Using div tips in your site, blog, or book is simple. Start off with three colons <code>:::</code> followed by the name that you gave each div tip, and then close it off with another set of three colons <code>:::</code>. Like this:</p>
+<pre><code>:::puzzle
+My content goes in here!
+:::</code></pre>
+<p>Here are the four div tips we made:</p>
+<p><img src="all-four.png" /></p>
+</div>
+<div id="under-the-hood-part-ii" class="section level2">
+<h2>Under the hood, Part II</h2>
+<p>What’s actually happening here is that <a href="https://www.pandoc.org/MANUAL.html#divs-and-spans">Pandoc</a> will take the <code>:::</code> and turn them into <code>&lt;div&gt;</code> tags with the names as classes:</p>
+<p>So that this:</p>
+<pre><code>:::puzzle
+My content goes in here!
+:::</code></pre>
+<p>becomes <em>this</em> in HTML output:</p>
+<pre><code>&lt;div class=&quot;puzzle&quot;&gt;
+My content goes in here!
+&lt;/div&gt;</code></pre>
+</div>
+<div id="the-end" class="section level2">
+<h2>The End</h2>
+<p>Now you’re fully equipped to start div-tippin’. Have fun creating content, and if you make a custom div tip that you’re proud of–let me know on twitter <a href="https://twitter.com/dcossyle">@dcossyle</a>!</p>
+<p><br />
+</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>For the curious reader, check out Figures 2 &amp; 3 of Emi Tanaka’s <a href="https://emitanaka.org/r/posts/2018-12-12-scientific-and-technical-blogging-radix-vs-blogdown/">blog post</a> for a visual of how Pandoc comes into the framework for Distill (formerly Radix) and blogdown <code>.Rmd</code> posts, but not blogdown <code>.md</code> or <code>.Rmarkdown</code> posts.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>You can see the custom divs being implemented in the R Packages book’s <a href="https://github.com/hadley/r-pkgs/commit/6087b1450b09141085aa10e2d249fc0570e9f529">commit history</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+</ol>
+</div>

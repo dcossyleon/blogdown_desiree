@@ -45,24 +45,16 @@ projects: []
 <p><br />
 </p>
 <p>Adding all this in is a little bit like wrapping a present in a box, in a box, in another box… The javascript does the heavy lifting to make the links, but the javascript file has to be put in the HTML file, and the HTML file has to be referenced in the <code>_output.yml</code> file. And bookdown then uses the <code>_output.yml</code> file to implement the javascript code and link to the CSS that styles the anchors.</p>
-<p><img src="many_boxes.jpg" /><br />
-</p>
+<p><img src="many_boxes.jpg" /></p>
 <div id="lets-get-started" class="section level2">
 <h2>Let’s get started!</h2>
-<p><br />
-</p>
 <p>You can add anchor links to any book that you’ve already started.</p>
 <p>I’m going to demo this starting from a skeletal book, using only the files that are created when you have a brand new R Project and have run the line of code below. If you already have a book, then skip to the next step.</p>
 <pre><code>bookdown:::bookdown_skeleton(getwd())</code></pre>
 <p>After running this command, I <a href="https://github.com/dcossyleon/anchor_book/commit/86ebbf94442ad2127a0c447823bfd6150be80291">commit</a> to GitHub.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="add-javascript-to-make-anchor-links-for-all-section-headers" class="section level2">
 <h2>1) Add javascript to make anchor links for all section headers</h2>
-<p><br />
-</p>
 <p>We’ll make a new file with a few lines of javascript that essentially say “find every section header, and tack on a link to itself right before that header”. The other important thing the javascript file will do is to add a CSS class “hasAnchor” to each of the headers. This is part of what will allow to style our anchor links with CSS in a couple steps.</p>
 <ol style="list-style-type: decimal">
 <li><p>In RStudio go to <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em></p></li>
@@ -71,8 +63,8 @@ projects: []
 
   // Section anchors
   $(&#39;.section h1, .section h2, .section h3, .section h4, .section h5&#39;).each(function() {
-anchor = &#39;#&#39; + $(this).parent().attr(&#39;id&#39;);
-$(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + anchor + &#39;&quot; class=&quot;anchor&quot;&gt;&lt;/a&gt;&#39;);
+    anchor = &#39;#&#39; + $(this).parent().attr(&#39;id&#39;);
+    $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + anchor + &#39;&quot; class=&quot;anchor&quot;&gt;&lt;/a&gt;&#39;);
   });
 });
 </code></pre></li>
@@ -80,14 +72,9 @@ $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + an
 </ol>
 <p>Phew–you’re done with the javascript code now!</p>
 <p><a href="https://github.com/dcossyleon/anchor_book/commit/b53c7f06660338754fc6dc10180710d935fcecd2">Commit</a> this new file to GitHub.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="embed-book.js-into-html-file" class="section level2">
 <h2>2) Embed <code>book.js</code> into HTML file</h2>
-<p><br />
-</p>
 <p>We’ll make an HTML file that will refer to our javascript file.</p>
 <ol style="list-style-type: decimal">
 <li><p><em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em></p></li>
@@ -96,14 +83,9 @@ $(this).addClass(&quot;hasAnchor&quot;).prepend(&#39;&lt;a href=&quot;&#39; + an
 <li><p>Save this file as <code>header.html</code> in your project directory. You can choose a different name if you’d like.</p></li>
 </ol>
 <p><a href="https://github.com/dcossyleon/anchor_book/commit/5fcb3fcc5b355110b656f2dd0a30b7c8f142ae1b">Commit</a> your HTML file to GitHub.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="add-css-to-show-anchor-links" class="section level2">
 <h2>3) Add CSS to show anchor links</h2>
-<p><br />
-</p>
 <p>In our javascript code, we had the class “hasAnchor” be programatically added to our sections headers. So, we can now style them so that each time we hover over the section header, the anchor link icon will become visible.</p>
 <ol style="list-style-type: decimal">
 <li><p>You may already have a CSS file in your project directory (e.g. <code>style.css</code>), in which case, go to step 2. But if you don’t, create a CSS file with <em>File</em> &gt; <em>New File</em> &gt; <em>Text File</em>. Save it as <code>style.css</code> in your project directory. Once again, a different name is okay.</p></li>
@@ -148,14 +130,9 @@ visibility: hidden;
 <li><p>Finally, since we made overflow possible, we don’t want the anchor to overlap with the TOC in an ugly mess on smaller screens. So we change visibility to hidden with our CSS media query for screens that are less than 1144px in the last style rule.</p></li>
 </ul>
 <p>Here’s my <a href="https://github.com/dcossyleon/anchor_book/commit/29900eeec766970e83282dda4e9e77e259aa9ce3">commit</a> after modifying my CSS file.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="add-anchor-link-elements-to-_output.yml" class="section level2">
 <h2>4) Add anchor link elements to <code>_output.yml</code></h2>
-<p><br />
-</p>
 <p>We created all the anchor link infrastructure, now we just need to tell bookdown about it by referencing in our <code>_output.yml</code>.</p>
 <ol style="list-style-type: decimal">
 <li>Open <code>_output.yml</code>, located in your project directory</li>
@@ -167,19 +144,11 @@ visibility: hidden;
 <li><p>Save and Close.</p></li>
 </ol>
 <p>My <a href="https://github.com/dcossyleon/anchor_book/commit/55e10ddfd09a50a7410add7f653228927d38cdf0">commit here</a>.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="preview-your-book" class="section level2">
 <h2>5) Preview your book</h2>
-<p><br />
-</p>
 <p>And enjoy your handywork!</p>
 <p>View all my commits for this post <a href="https://github.com/dcossyleon/anchor_book/commits/master">here</a>.</p>
-<p><br />
-<br />
-</p>
 </div>
 <div id="final-comments" class="section level2">
 <h2>Final comments</h2>

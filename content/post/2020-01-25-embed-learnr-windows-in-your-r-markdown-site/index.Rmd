@@ -1,0 +1,249 @@
+---
+title: Interactive tutorial windows for your R Markdown Site
+author: Desirée De Leon
+date: '2020-01-25'
+slug: learnr-iframes
+categories:
+  - Rmd
+  - education
+tags:
+  - learnr
+  - iframe
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2020-01-25T16:34:09-05:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+# Using LearnR in your RMD site
+
+In this post I'm going to show you how you put a LearnR tutorial window into your R Markdown website. I haven't outright tested this with bookdown, blogdown, or Distill, but it should work the same way for those types of sites too. This is a quick and dirty first draft to share this, so that it can be out in the world! A better-illustrated and more-succint draft of this blog post is in the works.
+
+If you're unfamiliar with the [LearnR](https://rstudio.github.io/learnr/) package, it allows you to create special R Markdown documents that use Shiny to create interactive tutorials. The feature of LearnR tutorials that I like the most is that you can create small, little R consoles with preloaded code, solutions, and instructions for others to use. Normally, LearnR tutorials exist as their own entities, living only within a package that you build or on a shiny app url that you send to someone. 
+
+When Hasse and I were working on our [giraffe](bit.ly/giraffe-stats) project, we wanted to figure out a way to embed these LearnR windows into our site. And in this post, I show you how to carry this out in your own existing R Markdown website. 
+
+The main thing this blog contributes is a bit of javascript that will make the iframe with your [LearnR](https://rstudio.github.io/learnr/) window appropriately resize when the user creates new plots, or checks solutions, etc.
+
+:::note
+LearnR apps need to be hosted on the Shiny server. There are limits to the number of apps and simultaneous users you can have with the free tier of a Shiny account. 
+:::
+
+## Before you begin
+
+I assume you already:
+
+* Have a GitHub account and are comfortable creating repositories for your projects
+* Have an existing R Markdown website
+* Are comfortable publishing apps to a (free) Shiny account
+
+## Bird's eye view of what needs to happen
+
+### Create a LearnR app
+
+1. You will create an independent LearnR app in its own github repository. You will publish it with a Shiny account(you will need to create a free shiny account if you don't already have one.) And take note of its published URL.
+
+1. You will include an HTML file in the `in_header:` option of your LearnR.Rmd. This HTML file will include some out-of-the-box JavaScript and some homemade Javascript we'll write ourselves.
+
+1. At the very *end* of the body of your LearnR.Rmd, you will include one line of `<div>` tags.
+
+### Embed it in your site
+
+1. Now move over to the repository/directory that houses your RMD site. You'll embed your LearnR app's URL in an iframe the site .Rmd page of your choice.
+
+1. You will include an HTML file in the `in_header:` option of your .Rmd. This HTML file will include a link to the same out-of-the-box javascript library.
+
+1. At the very *end* of the body of the site .Rmd page, you will include a script tag.
+
+
+## Let's do it!
+
+Diving right in, let's first create a learnR window.
+
+### Making a LearnR document
+
+1. Within the project that will contain only your LearnR content. Make sure you have installed the `learnr` package. Create a new learnR document by going to `File` > `New File` > `R Markdown` > `From Template` > `Interactive Tutorial`. 
+
+1. You will get a pre-populated learnR document. We'll start by keeping the YAML frontmatter, the setup code chunk, and one of the regular learnr code chunks (containing `exercise = TRUE`)---and now **delete** everything else. We can only create one learnr window per learnR Rmd, so this is why we are only keeping a single exercise chunk in this document. 
+
+1. You can populate your exercise code chunk with whatever you'd like. (It will get fussy if you leave it blank, so I suggest at least included commented instructions). See the learnR documentation for ideas of what is possible.
+
+
+  <!-- ```{r 02-ggplot2, exercise=TRUE} -->
+  <!-- # Print the output of this plot -->
+
+  <!-- library(tidyverse) -->
+
+  <!-- c <- ggplot(mtcars, aes(factor(cyl))) + geom_bar() -->
+
+  <!-- ``` -->
+
+1. Create an "solutions" code chunk. To create the solution to the exercise code chunk. 
+
+
+<!-- ```{r 02-ggplot2-solution} -->
+
+<!-- c -->
+
+<!-- ``` -->
+
+
+
+### Measuring the height of a LearnR window.
+
+Now we'll create the bits that will make it possible to "measure" how tall our learnR content is. We first have to create an HTML file that will house the JavaScript that allows us to do the meausuring.
+
+1. Create an HTML file. Go to `File` > `New File` > `Text File`. Save this file as `test1.html` (you can name it something else). 
+
+1. Within this file, you'll paste the following:
+
+    ```{r, eval = FALSE}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js" type="text/javascript"></script>
+
+    ```
+
+    The code above is a link that will bring in a special javascript library called an iFrame Resizer. This is an out-of-the-box library that will detect anytime the height of the LearnR content changes. This is the *first* piece of javascript we need.
+
+1. Paste in the following script tags to the HTML file, underneath the previous code you added. This is the homemade javascript--that will let the iFrame resize *even when* the learnR window produces content that spills outside of its bounds (e.g. when a Solutions tab is opened up). 
+
+    ```{r, eval = FALSE}
+   <script type="text/javascript">
+
+    //Once page is loaded, override and disable popover "scroll into view""
+      $(document).ready(function() {
+        window.tutorial.scrollIntoView = function() {}
+      })
+      
+    // Add padding to learnr body when popover shown
+      $(document).on("shown.bs.popover", function() {
+      	var popoverHeight = document.querySelector(".popover").offsetHeight
+      	document.body.style.paddingTop = popoverHeight + 10 + "px"
+      })
+    
+    // Set padding to 0 when popover hidden
+      $(document).on("hide.bs.popover", function() {
+      	var popoverHeight = document.querySelector(".popover").offsetHeight
+      	document.body.style.paddingTop = "0px"
+      })
+  </script>
+    ```
+
+    This code above basically goes a bit above and beyond what the iFrameResizer will do. This code will check whether or not a "popover" is open in the learnR content. Popovers include things like the solutions pop-up that appears when a learner clicks on the Blue solutions tag of the learnr windows---and its CSS has been built into learnR in such a way that the iFrameResizer will ignore it. The homemade javascript will measure the popover's height + 10px of extra wiggle room, add that to what the iFrameResizer has detected. 
+    
+    The last bit of homemade javascript here also makes sure that we override some default behavior that would otherwise make your page scroll the resized window to the top of the screen. We override this because it's visually jarring when this happens. 
+    
+1. We're done with the HTML file. Go ahead and close out and move back to the .Rmd that contains your learnR exercise code chunk.
+
+### Back in the LearnR .Rmd
+
+1. Update the YAML front matter by doing the following:
+
+    * Delete the `Title:` field. We don't want a title to show up with our LearnR window.
+    * Insert the `includes: in_header:` option into your YAML, followed by the HTML file name we created in the earlier step. Here's what mine looks like: 
+    
+    ```{r, eval = FALSE}
+    ---
+    output: 
+    html_document:
+      includes:
+        in_header: test1.html
+    runtime: shiny_prerendered
+    ---
+      
+    ```
+    
+    
+    Now our learnR document has a way of porting in the javascript we linked in the HTML file.
+    
+1. Add a iFrameResizer div at the end of the document, by pasting in the following as the *last* thing in your .Rmd. 
+
+  ```{r, eval = FALSE}
+  
+  <div data-iframe-height></div>
+  
+  ```
+  *This* little line is what will "report back" to the iFrameResizer to let it know where the end of the content is. Without this, iFrameResizer will not work. --And it's easy to forget to include this.
+  
+  
+1. Finally, publish your learnR document to your Shiny account by clicking the blue publish icon.
+
+  * Once it is published, the browser will open up with the live url. Take note of this url or keep this window open. We will need it for our next step. 
+  
+  * At this point, your learnr app should be resizing appropriately. You will know that something is *wrong* if, when viewing your published app, you click on the solutions tab and the solutions popup is overflowing off of the screen.
+  
+  
+### Creating an iframe in your site
+
+Now that the app has been built, it's time to insert it into the RMD site inside of an iframe. We'll also need to reference the iframeResizer library in the header of our RMD site's page. Here's how we do that:
+
+1. Make sure you are now working in the directory that contains your RMD site and open the document where you'd like to insert the iframe. 
+
+1. Make another HTML file (`File` > `New File` > `Text File`), and name it `header.HTML` (you can name it something else). You can save it in your working directory. Paste the following into it:
+
+
+    ```{r, eval = FALSE}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.5.16/iframeResizer.contentWindow.min.js" type="text/javascript"></script>
+
+    ```
+
+1. Update the YAML front matter by doing the following:
+
+    * Insert the `includes: in_header:` option into your YAML, followed by the HTML file name we created in the earlier step. Here's what mine looks like: 
+    
+    ```{r, eval = FALSE}
+    ---
+    output: 
+    html_document:
+      includes:
+        in_header: header.html
+    ---
+      
+    ```
+
+  So, now the iFrameResizer is referenced in our RMD site page as well.
+  
+1. Now we can take the URL that we saved from our published learnR app, and embed it into an iframe. This goes straight into your R Markdown document. I like to sequester my iFrames with HTML comments e.g. `<!-->` so that they are easier to find in the sea of the rest of your R Markdown content. Here's an example of one of mine: 
+
+```{r, eval= FALSE}
+<!---LEARNR EX 1-->
+
+<iframe style="margin:0 auto; min-width: 100%;"
+id="myIframe1" class="interactive" src="https://mylearnrapp.shinyapps.io/my-exercise1" scrolling="no" frameborder="no"></iframe>
+
+<!------------->
+
+```
+
+
+A couple things to point out about the code above:
+  * You need to give each of your learnr iframes a unique id in order for them to resize properly. 
+  * You need to give each iframe a class of "interactive"...this will come in the play in the next and final step.
+  * The stuff following the "style" attribute is a bit of inline CSS here. This is center the iframe on the page, which I strongly recommend. Technically, it's better form to put all CSS in its own file, but I'm writing inline here for the sake of simplicity. 
+  
+  
+1. Finally, at the *very end* of your .Rmd document, make sure you include this HTML tag:
+
+    ```{r, eval= FALSE}
+    
+    <script>
+      iFrameResize({}, ".interactive");
+    </script>
+    
+    ```
+
+  With this last step, the iframe resizer knows to apply its magic only to iframes with the "interactive" class. 
+  
+  
+1. Knit your page, and check out what it looks like in the browser! 
+
+### The end
+
+Phew! You've now completed all the necessary steps to give your learners on your page interactive consoles. Enjoy resizing your learnr iframes!
+
+

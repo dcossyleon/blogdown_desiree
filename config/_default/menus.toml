@@ -18,10 +18,10 @@
   url = "project_landing/"
   weight = 30
 
-[[main]]
-  name = "Art"
-  url = "gallery/"
-  weight = 50
+#[[main]]
+ # name = "Art"
+  #url = "gallery/"
+ # weight = 50
   
 [[main]]
   name = "Prints"

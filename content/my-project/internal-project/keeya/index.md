@@ -10,7 +10,7 @@ date: "2020-04-08"
 
 <br>
 
-You can read the story, by clicking through or arrowing through the window below.
+You can read the story by clicking through or arrowing through the window below.
 
 <br>
 <br>

@@ -2,6 +2,14 @@
   publish = "public"
   command = "hugo"
   
+[build.environment]
+  HUGO_THEME = "repo"
+  HUGO_VERSION = "0.68.3"
+  HUGO_ENABLEGITINFO = "true"
+  
+[context.production.environment]
+  HUGO_ENV = "production"
+  
 [context.production.environment]
   HUGO_VERSION = "0.68.3"
   HUGO_ENV = "production"

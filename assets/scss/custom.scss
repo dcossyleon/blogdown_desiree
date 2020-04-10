@@ -148,34 +148,33 @@ padding: 1rem;
 
 .parallax {
   background-position: center center;
-  padding: 330px 0 600px 0 !important;
+  padding-top: 100vh !important;
   background-attachment: scroll !important; /*override 'fixed' for iOS problem */
-
-.parallax:after{
-      content:"";
-      position: fixed; /* stretch a fixed position to the whole screen */
-      top:0;
-      height:100vh; /* fix for mobile browser address bar appearing disappearing */
-      left:0;
-      right:0;
-      z-index:-1; /* needed to keep in the background */
-      background: url(/img/hello.jpg) center center;
-      -webkit-background-size: 264;
-      -moz-background-size: 264;
-      -o-background-size: 264;
-      background-size: 264%;
-      background-position-x: 39%;
 }
 
+.parallax:after {
+  content:"";
+  position: fixed; /* stretch a fixed position to the whole screen */
+  top:0;
+  height:100vh; /* fix for mobile browser address bar appearing disappearing */
+  left:0;
+  right:0;
+  z-index:-1; /* needed to keep in the background */
+  background: url(/img/hello.jpg) center center;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
-
-  @media screen and (max-width: 768px) {
-      .home-section.bg-image {
-        background-position-x: 39%;
-        background-size: 200%;
-        padding: 330px 0 275px 0;
-    }
+@media screen and (max-width: 768px) {
+  .home-section.bg-image {
+    background-position-x: 39%;
+    background-size: 200%;
+    padding: 330px 0 275px 0;
   }
+}
 
 
 

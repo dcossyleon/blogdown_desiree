@@ -10,7 +10,7 @@ subtitle = ""
 
 [content]
   # Page type to display. E.g. project.
-  page_type = "project"
+  page_type = "my-project" # name of folder with the right md pages go here
   
   # Filter toolbar (optional).
   # Add or remove as many filters (`[[content.filter_button]]` instances) as you like.

@@ -8,6 +8,15 @@ body {
   min-height: 140px !important;
 }
 
+  @media screen and (max-width: 768px) {
+    body {
+      margin-top: 100px !important;
+    }
+     .navbar {
+      min-height: 100px; !important;
+    }
+  }
+
 .navbar {
     background-color: #fcfcfc33;
     box-shadow: 0 0 50px rgba(252, 252, 252, 0.76);
@@ -51,12 +60,6 @@ a.nav-link:after {
 a.nav-link:hover:after {
   width: 70%;
 }
-
-
-
-
-
-
 
 
 /*----------------------------------*/
@@ -140,10 +143,25 @@ padding: 1rem;
   }
 
 .parallax {
-  background-attachment: fixed;
   background-position: center center;
   padding: 330px 0 600px 0 !important;
 }
+
+.parallax: after{
+      content:"";
+      position:fixed; /* stretch a fixed position to the whole screen */
+      top:0;
+      height:100vh; /* fix for mobile browser address bar appearing disappearing */
+      left:0;
+      right:0;
+      z-index:-1; /* needed to keep in the background */
+      background: url(img/hello.jpg) center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+
+
 
 
   @media screen and (max-width: 768px) {

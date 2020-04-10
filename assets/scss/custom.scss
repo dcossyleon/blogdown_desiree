@@ -13,7 +13,7 @@ body {
       margin-top: 100px !important;
     }
      .navbar {
-      min-height: 100px; !important;
+      min-height: 100px !important;
     }
   }
 
@@ -147,7 +147,7 @@ padding: 1rem;
   padding: 330px 0 600px 0 !important;
 }
 
-.parallax: after{
+.parallax:after{
       content:"";
       position:fixed; /* stretch a fixed position to the whole screen */
       top:0;
@@ -160,7 +160,7 @@ padding: 1rem;
       -moz-background-size: cover;
       -o-background-size: cover;
       background-size: cover;
-
+}
 
 
 

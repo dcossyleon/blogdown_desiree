@@ -159,11 +159,12 @@ padding: 1rem;
       left:0;
       right:0;
       z-index:-1; /* needed to keep in the background */
-      background: url(img/hello.jpg) center center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+      background: url(/img/hello.jpg) center center;
+      -webkit-background-size: 264;
+      -moz-background-size: 264;
+      -o-background-size: 264;
+      background-size: 264%;
+      background-position-x: 39%;
 }
 
 

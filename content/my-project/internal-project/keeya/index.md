@@ -10,7 +10,7 @@ date: "2020-04-08"
 
 <br>
 
-You can read the story by clicking through or arrowing through the window below.
+You can read the story by clicking or arrowing through the window below. Or, you can download the PDF <a href="Keeya-site.pdf" download> here </a>.
 
 <br>
 <br>

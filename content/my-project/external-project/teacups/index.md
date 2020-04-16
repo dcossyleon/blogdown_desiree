@@ -1,5 +1,5 @@
 ---
-date: "2016-04-27T00:00:00Z"
+date: "2020-01-29"
 external_link: https://tinystats.github.io/teacups-giraffes-and-statistics/
 image:
   caption: Desirée De Leon

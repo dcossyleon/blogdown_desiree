@@ -153,9 +153,9 @@ Now we'll create the bits that will make it possible to "measure" how tall our L
     ```{r, eval = FALSE}
     ---
     output: 
-    html_document:
-      includes:
-        in_header: test1.html
+      html_document:
+        includes:
+          in_header: test1.html
     runtime: shiny_prerendered
     ---
       

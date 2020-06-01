@@ -131,3 +131,9 @@ div.demo {
 div.note {
   background-image: url("../Lightbulb.png");
 }
+
+.caption {
+  text-align: center;
+  color: #404040;
+  font-size: 0.7em;
+}

@@ -137,3 +137,7 @@ div.note {
   color: #404040;
   font-size: 0.7em;
 }
+
+.publish-icon {
+  display: inline-block;
+}

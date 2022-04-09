@@ -22,8 +22,8 @@ disqusShortname = ""
 ## Advanced options below ##
 ############################
 
-# Name of Academic theme folder in `themes/`.
-theme = "hugo-academic"
+# Name of apero theme folder in `themes/`.
+theme = "hugo-apero"
 
 # Get last modified date for content from Git?
 enableGitInfo = false

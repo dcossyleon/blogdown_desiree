@@ -19,3 +19,7 @@ rprofile <- Sys.getenv("R_PROFILE_USER", "~/.Rprofile") # This line and below ad
 if (file.exists(rprofile)) {
   source(file = rprofile)
 }
+
+
+# fix Hugo version
+options(blogdown.hugo.version = "0.65.0")

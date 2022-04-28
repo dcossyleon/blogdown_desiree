@@ -1,11 +1,11 @@
 ---
-title: "Desirée \n De Leon"
-subtitle: "Data Science + Design"
+title: "Desirée\_De\_Leon"
+subtitle: "Data + Design"
 description: ""
 
 
 images:
-  - img/hello.jpg
+  - img/illo-desiree.png
 image_left: false
 text_align_left: false
 show_social_links: true # specify social accounts in site config

@@ -6,9 +6,12 @@ use_featured: true # if false, use most recent by date
 number_categories: 0 # set to zero to exclude
 show_intro: true
 intro: |
-  I have my Ph.D. in Neuroscience, and I'm a data science educator at RStudio, where I develop resources for learning data science with R. I enjoy using R Markdown, illustration, and web design to work on projects that make complex topics feel friendly and less intimidating -- my favorite example of this is my co-authored project [Teacup, Giraffes, & Statistics](../../my-project/external-project/teacups), which is all about teaching stats basics with tiny giraffes. 
+  I'm glad you stopped by. I am a researcher, designer, and educator who enjoys making data science projects feel beautiful and friendly. I work at RStudio to develop user experiences that help teams do more with their data. 
+  
+  Through my PhD research in neuroscience, I became interested in the best ways to teach complex topics and empower learners. One of my favorite examples of this is my co-authored project [Teacup, Giraffes, & Statistics](../../my-project/external-project/teacups), which leverages illustration, web design, and R Markdown to teach statistical principles with tiny giraffes. Over the past several years, I have continued to design websites, instructional content, and novel learning platforms to making learning data science and R an intuitive experience.
 
-  When I'm not coding, I create mixed media illustrations. My work has been featured in international media outlets, including the BBC, The Guardian, and the French newspaper group Le Monde, as well as in campaigns for Hewlett Packard and 20th Century Fox. 
+  When I'm not coding or teaching, I work on mixed media illustration, some of which have been featured on the [BBC](https://www.bbc.co.uk/programmes/p05g73l9/p05g71m6) [programs](https://www.bbc.co.uk/programmes/b0952zlc), [The Guardian](https://www.theguardian.com/artanddesign/gallery/2017/feb/11/small-is-beautiful-art-from-tiny-objects?page=with%3Aimg-2), editorials, and advertising campaigns for Hewlett Packard and 20th Century Fox. You can also find my illustrations on [RStudio's education website](https://education.rstudio.com/).
+  
 show_outro: false
 outro: |
   <i class="fas fa-glass-cheers pr2"></i>Sincere thanks to [Maëlle Salmon](https://masalmon.eu/) for her help naming this Hugo theme!

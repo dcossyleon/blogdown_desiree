@@ -1,0 +1,40 @@
+
+/* -- home page -- */
+
+ .home .page-main.pa4 h1 {
+  color: black;
+}
+
+ .home .page-main.pa4 h2 {
+  font-size: 1.5rem;
+}
+
+
+/* About page */
+
+
+
+body > div > main > section > section > div > div {
+  margin-top: -2em;
+}
+
+
+/* blog list page */
+
+ .blog-content .f6 {
+   font-size: 1.125rem;
+ }
+ 
+ footer .f7 {
+   text-transform: uppercase;
+   letter-spacing: 1.5pt;
+   padding-top: 1em;
+ }
+ 
+ 
+ /* blog single page */
+ 
+ .post-content {
+   font-size: 1.2em;
+   line-height: 1.5em;
+ }

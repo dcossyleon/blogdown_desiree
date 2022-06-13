@@ -11,7 +11,6 @@ description: |
   Our first day together is all about building and publishing.
 excerpt: 
 author: Alison Hill
-show_post_thumbnail: true
 show_author_byline: false
 show_post_date: false
 ---

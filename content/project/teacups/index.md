@@ -20,3 +20,4 @@ tags:
 title: Teacups, Giraffes, and Statistics
 ---
 
+A series of illustrated online modules co-authored with Hasse Walum to teach statistics and R coding, set in a playful narrative about fictional miniature giraffes. Created entirely in R Markdown. 

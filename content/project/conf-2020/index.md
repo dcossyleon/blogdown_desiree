@@ -19,3 +19,4 @@ tags:
 title: Of Teacups, Giraffes, and R Markdown
 ---
 
+rstudio::conf2020 talk about the behind-the-scenes work to create the [teacup giraffes project](https://tinystats.github.io/teacups-giraffes-and-statistics/), developed with Hasse Walum.

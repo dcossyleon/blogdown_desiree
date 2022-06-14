@@ -4,7 +4,7 @@ external_link: https://resources.rstudio.com/webinars/sharing-on-short-notice-ho
 image:
   caption: rawpixel
   focal_point: Smart
-summary: An RStudio webinar about getting your R Markdown documents on the web in no time at all. Developed with [Alison Hill](https://alison.rbind.io/).
+summary: An RStudio webinar about getting your R Markdown documents on the web in no time at all. Developed with [Alison Hill](https://www.apreshill.com/).
 links:
 - icon: door-open
   icon_pack: fas
@@ -18,3 +18,4 @@ tags:
 title: Sharing on Short Notice
 ---
 
+An RStudio webinar about getting your R Markdown documents on the web in no time at all. Developed with [Alison Hill](https://www.apreshill.com/).
